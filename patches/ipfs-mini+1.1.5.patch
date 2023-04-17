@@ -1,0 +1,15 @@
+diff --git a/node_modules/ipfs-mini/src/index.js b/node_modules/ipfs-mini/src/index.js
+index b0b2ed5..38bfc3f 100644
+--- a/node_modules/ipfs-mini/src/index.js
++++ b/node_modules/ipfs-mini/src/index.js
+@@ -84,6 +84,10 @@ IPFS.prototype.sendAsync = function sendAsync(opts, cb) {
+         request.setRequestHeader('accept', options.accept);
+       }
+ 
++      if (self.provider.auth) {
++        request.setRequestHeader('authorization', self.provider.auth);
++        console.log('authorization==================\n'+self.provider.auth);
++      }
+       if (options.payload && options.boundary) {
+         request.setRequestHeader('Content-Type', `multipart/form-data; boundary=${options.boundary}`);
+         request.send(options.payload);

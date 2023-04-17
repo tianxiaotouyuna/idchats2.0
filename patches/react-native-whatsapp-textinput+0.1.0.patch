@@ -1,0 +1,45 @@
+diff --git a/node_modules/react-native-whatsapp-textinput/index.js b/node_modules/react-native-whatsapp-textinput/index.js
+index 62469fe..76cef88 100644
+--- a/node_modules/react-native-whatsapp-textinput/index.js
++++ b/node_modules/react-native-whatsapp-textinput/index.js
+@@ -43,8 +43,8 @@ export default class WhatsAppTextInput extends Component {
+                 <View style={[styles.textInputParentView, {
+                     borderTopColor: this.props.borderTopColor,
+                     backgroundColor: this.props.backgroundColor,
+-                }]}>
+-                    <View style={styles.textInputView}>
++                },this.props.containerStyle]}>
++                    <View style={[styles.textInputView,this.props.textInputStyle]}>
+                         <TextInput
+                             editable={this.props.editable}
+                             multiline={this.props.multiline}
+@@ -62,13 +62,19 @@ export default class WhatsAppTextInput extends Component {
+                             style={[styles.textInputStyle, {
+                                 height: Math.min(120, Math.max(35, this.state.height)),
+                                 backgroundColor: this.props.textInputBgColor,
+-                                color: this.props.messageTextColor
++                                color: this.props.messageTextColor,
++                                marginTop:3
+                             }]}
+                         />
+                     </View>
+                     <TouchableOpacity
+                         disabled={this.props.validateButton()}
+-                        onPress={() => this.props.onPressButton()}>
++                        onPress={() => {
++                            this.setState({
++                                height:0
++                            })
++                            this.props.onPressButton()
++                        }}>
+                         <View style={styles.buttonPosition}>
+                             <View style={[styles.sendButtonStyle, {
+                                 backgroundColor: this.props.validateButton() == true ? this.props.sendButtonDisableColor : this.props.sendButtonEnableColor
+@@ -95,6 +101,7 @@ const styles = StyleSheet.create({
+         flex: 1,
+         marginRight: 15,
+         justifyContent: 'center',
++        width:300
+     },
+     textInputStyle: {
+         fontSize: 14,

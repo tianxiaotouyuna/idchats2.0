@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>详情_zksync</title>
+    <g id="社区2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="公链" transform="translate(-157.000000, -21.000000)">
+            <g id="详情_zksync" transform="translate(157.000000, 21.000000)">
+                <rect id="矩形备份" fill-opacity="0.1" fill="#FFFFFF" x="0" y="0" width="20" height="20" rx="10"></rect>
+                <g id="编组-4" transform="translate(3.000000, 6.000000)">
+                    <polygon id="路径-2" fill="#9996FF" points="0 4 4.02741298 0 4.02741298 2 7.92432819 2 4.02741298 5.13084991 4.02741298 8"></polygon>
+                    <polygon id="路径-2" fill="#5A5CA8" transform="translate(10.037836, 4.000000) scale(-1, -1) translate(-10.037836, -4.000000) " points="6.07567181 4 10.1030848 0 10.1030848 2 14 2 10.1030848 5.13084991 10.1030848 8"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

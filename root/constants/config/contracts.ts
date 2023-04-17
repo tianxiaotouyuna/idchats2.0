@@ -1,0 +1,34 @@
+import { ChainId } from "./chain";
+
+export default {
+  usdt: {
+    [ChainId.ETHEREUM]: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    [ChainId.GOERLI]: "0xBBa535a0939705e95064749f70990C86334E2b29",
+    [ChainId.BSC]: "0x55d398326f99059fF775485246999027B3197955",
+    [ChainId.BSC_TESTNET]: "",
+  },
+  idChats:{
+    [ChainId.ETHEREUM]: "",
+    [ChainId.GOERLI]: "0xa274FE4780f796e60d8D96FEAE9d3a9D18a17382",
+    [ChainId.BSC]: "",
+    [ChainId.BSC_TESTNET]: "",
+  },
+  lockDrop:{
+    [ChainId.ETHEREUM]: "",
+    [ChainId.GOERLI]: "0xF34F80eC59F790d9f5477E01929DB656C0a17CB2",
+    [ChainId.BSC]: "",
+    [ChainId.BSC_TESTNET]: "",
+  },
+  merchantLockDrop:{
+    [ChainId.ETHEREUM]: "0x4B06C7EAD8fcc04765dFDfA974a6E841Eb263d90",
+    [ChainId.GOERLI]: "0x4B06C7EAD8fcc04765dFDfA974a6E841Eb263d90",
+    [ChainId.BSC]: "0x4B06C7EAD8fcc04765dFDfA974a6E841Eb263d90",
+    [ChainId.BSC_TESTNET]: "0x4B06C7EAD8fcc04765dFDfA974a6E841Eb263d90",
+  },
+  erc721mint:{
+    [ChainId.ETHEREUM]: "0x37E8a6517E3F4CAB6B9deac39aC92551D6FC1F1E",
+    [ChainId.GOERLI]: "0x37E8a6517E3F4CAB6B9deac39aC92551D6FC1F1E", //0x17d28D826398C97A3aEe50d6994a5b09D46247D7
+    [ChainId.BSC]: "",
+    [ChainId.BSC_TESTNET]: "",
+  }
+};

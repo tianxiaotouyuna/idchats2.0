@@ -1,0 +1,202 @@
+diff --git a/node_modules/react-native-gifted-chat/.DS_Store b/node_modules/react-native-gifted-chat/.DS_Store
+new file mode 100644
+index 0000000..e69de29
+diff --git a/node_modules/react-native-gifted-chat/lib/Avatar.js b/node_modules/react-native-gifted-chat/lib/Avatar.js
+index 70ce1d7..9dc4b82 100644
+--- a/node_modules/react-native-gifted-chat/lib/Avatar.js
++++ b/node_modules/react-native-gifted-chat/lib/Avatar.js
+@@ -64,7 +64,7 @@ export function Avatar(props) {
+             return (<GiftedAvatar avatarStyle={[
+                     styles[props.position].image,
+                     props.imageStyle && props.imageStyle[props.position],
+-                ]} user={props.currentMessage.user} onPress={() => { var _a; return (_a = props.onPressAvatar) === null || _a === void 0 ? void 0 : _a.call(props, props.currentMessage.user); }} onLongPress={() => { var _a; return (_a = props.onLongPressAvatar) === null || _a === void 0 ? void 0 : _a.call(props, props.currentMessage.user); }}/>);
++                ]}  textStyle={props.textStyle ? props.textStyle : {}} user={props.currentMessage.user} onPress={() => { var _a; return (_a = props.onPressAvatar) === null || _a === void 0 ? void 0 : _a.call(props, props.currentMessage.user); }} onLongPress={() => { var _a; return (_a = props.onLongPressAvatar) === null || _a === void 0 ? void 0 : _a.call(props, props.currentMessage.user); }}/>);
+         }
+         return null;
+     };
+diff --git a/node_modules/react-native-gifted-chat/lib/GiftedAvatar.js b/node_modules/react-native-gifted-chat/lib/GiftedAvatar.js
+index 1a32d67..79bbbed 100644
+--- a/node_modules/react-native-gifted-chat/lib/GiftedAvatar.js
++++ b/node_modules/react-native-gifted-chat/lib/GiftedAvatar.js
+@@ -71,42 +71,42 @@ export default class GiftedAvatar extends React.Component {
+                 return user.avatar([styles.avatarStyle, this.props.avatarStyle]);
+             }
+             else if (typeof user.avatar === 'string') {
+-                return (<Image source={{ uri: user.avatar }} style={[styles.avatarStyle, this.props.avatarStyle]}/>);
++                return (<Image source={{ uri: user.avatar }} style={[styles.avatarStyle, this.props.avatarStyle]} />);
+             }
+             else if (typeof user.avatar === 'number') {
+-                return (<Image source={user.avatar} style={[styles.avatarStyle, this.props.avatarStyle]}/>);
++                return (<Image source={user.avatar} style={[styles.avatarStyle, this.props.avatarStyle]} />);
+             }
+         }
+         return null;
+     }
+     renderInitials() {
+         return (<Text style={[styles.textStyle, this.props.textStyle]}>
+-        {this.avatarName}
+-      </Text>);
++            {this.avatarName}
++        </Text>);
+     }
+     render() {
+         if (!this.props.user ||
+-            (!this.props.user.name && !this.props.user.avatar)) {
+-            // render placeholder
+-            return (<View style={[
+-                    styles.avatarStyle,
+-                    styles.avatarTransparent,
+-                    this.props.avatarStyle,
+-                ]} accessibilityRole='image'/>);
++                (!this.props.user.name && !this.props.user.avatar)) {
++                // render placeholder
++                           return (<View style={[
++                                    styles.avatarStyle,
++                                       styles.avatarTransparent,
++                                        this.props.avatarStyle,
++                                    ]} accessibilityRole='image'/>);
+         }
+         if (this.props.user.avatar) {
+             return (<TouchableOpacity disabled={!this.props.onPress} onPress={this.props.onPress} onLongPress={this.props.onLongPress} accessibilityRole='image'>
+-          {this.renderAvatar()}
+-        </TouchableOpacity>);
++                {this.renderAvatar()}
++            </TouchableOpacity>);
+         }
+         this.setAvatarColor();
+         return (<TouchableOpacity disabled={!this.props.onPress} onPress={this.props.onPress} onLongPress={this.props.onLongPress} style={[
+-                styles.avatarStyle,
+-                { backgroundColor: this.avatarColor },
+-                this.props.avatarStyle,
+-            ]} accessibilityRole='image'>
+-        {this.renderInitials()}
+-      </TouchableOpacity>);
++            styles.avatarStyle,
++            { backgroundColor: this.avatarColor },
++            this.props.avatarStyle,
++        ]} accessibilityRole='image'>
++            {this.renderInitials()}
++        </TouchableOpacity>);
+     }
+ }
+ GiftedAvatar.defaultProps = {
+diff --git a/node_modules/react-native-gifted-chat/lib/GiftedChat.d.ts b/node_modules/react-native-gifted-chat/lib/GiftedChat.d.ts
+index ba9d989..35ae261 100644
+--- a/node_modules/react-native-gifted-chat/lib/GiftedChat.d.ts
++++ b/node_modules/react-native-gifted-chat/lib/GiftedChat.d.ts
+@@ -23,6 +23,7 @@ import { IMessage, User, Reply, LeftRightStyle, MessageVideoProps, MessageAudioP
+ import { LightboxProps } from 'react-native-lightbox-v2';
+ export interface GiftedChatProps<TMessage extends IMessage = IMessage> {
+     messages?: TMessage[];
++    isGroupChat?: boolean;
+     isTyping?: boolean;
+     messagesContainerStyle?: StyleProp<ViewStyle>;
+     text?: string;
+diff --git a/node_modules/react-native-gifted-chat/lib/GiftedChat.js b/node_modules/react-native-gifted-chat/lib/GiftedChat.js
+index 3b939bb..e738a1d 100644
+--- a/node_modules/react-native-gifted-chat/lib/GiftedChat.js
++++ b/node_modules/react-native-gifted-chat/lib/GiftedChat.js
+@@ -93,7 +93,10 @@ class GiftedChat extends React.Component {
+             const newMessages = messages.map(message => {
+                 return {
+                     ...message,
+-                    user: this.props.user,
++                    user: {
++                        ...this.props.user,
++                        _id: this.props.isGroupChat ? '-2' : this.props.user._id
++                    },
+                     createdAt: new Date(),
+                     _id: this.props.messageIdGenerator && this.props.messageIdGenerator(),
+                 };
+@@ -354,14 +357,14 @@ class GiftedChat extends React.Component {
+     renderMessages() {
+         const { messagesContainerStyle, ...messagesContainerProps } = this.props;
+         const fragment = (<View style={[
+-                {
+-                    height: this.state.messagesContainerHeight,
+-                },
+-                messagesContainerStyle,
+-            ]}>
+-        <MessageContainer {...messagesContainerProps} invertibleScrollViewProps={this.invertibleScrollViewProps} messages={this.getMessages()} forwardRef={this._messageContainerRef} isTyping={this.props.isTyping}/>
+-        {this.renderChatFooter()}
+-      </View>);
++            {
++                height: this.state.messagesContainerHeight,
++            },
++            messagesContainerStyle,
++        ]}>
++            <MessageContainer {...messagesContainerProps} invertibleScrollViewProps={this.invertibleScrollViewProps} messages={this.getMessages()} forwardRef={this._messageContainerRef} isTyping={this.props.isTyping} />
++            {this.renderChatFooter()}
++        </View>);
+         return this.props.isKeyboardInternallyHandled ? (<KeyboardAvoidingView enabled>{fragment}</KeyboardAvoidingView>) : (fragment);
+     }
+     resetInputToolbar() {
+@@ -404,7 +407,7 @@ class GiftedChat extends React.Component {
+         if (this.props.renderInputToolbar) {
+             return this.props.renderInputToolbar(inputToolbarProps);
+         }
+-        return <InputToolbar {...inputToolbarProps}/>;
++        return <InputToolbar {...inputToolbarProps} />;
+     }
+     renderChatFooter() {
+         if (this.props.renderChatFooter) {
+@@ -426,22 +429,22 @@ class GiftedChat extends React.Component {
+                 (() => { var _a; return (_a = this._actionSheetRef.current) === null || _a === void 0 ? void 0 : _a.getContext(); });
+             const { getLocale } = this;
+             return (<GiftedChatContext.Provider value={{
+-                    actionSheet,
+-                    getLocale,
+-                }}>
+-          <Wrapper testID={TEST_ID.WRAPPER} style={styles.safeArea}>
+-            <ActionSheetProvider ref={this._actionSheetRef}>
+-              <View style={styles.container} onLayout={this.onMainViewLayout}>
+-                {this.renderMessages()}
+-                {this.renderInputToolbar()}
+-              </View>
+-            </ActionSheetProvider>
+-          </Wrapper>
+-        </GiftedChatContext.Provider>);
++                actionSheet,
++                getLocale,
++            }}>
++                <Wrapper testID={TEST_ID.WRAPPER} style={styles.safeArea}>
++                    <ActionSheetProvider ref={this._actionSheetRef}>
++                        <View style={styles.container} onLayout={this.onMainViewLayout}>
++                            {this.renderMessages()}
++                            {this.renderInputToolbar()}
++                        </View>
++                    </ActionSheetProvider>
++                </Wrapper>
++            </GiftedChatContext.Provider>);
+         }
+         return (<View testID={TEST_ID.LOADING_WRAPPER} style={styles.container} onLayout={this.onInitialLayoutViewLayout}>
+-        {this.renderLoading()}
+-      </View>);
++            {this.renderLoading()}
++        </View>);
+     }
+ }
+ GiftedChat.defaultProps = {
+diff --git a/node_modules/react-native-gifted-chat/lib/MessageContainer.js b/node_modules/react-native-gifted-chat/lib/MessageContainer.js
+index 12fab47..4796e21 100644
+--- a/node_modules/react-native-gifted-chat/lib/MessageContainer.js
++++ b/node_modules/react-native-gifted-chat/lib/MessageContainer.js
+@@ -1,6 +1,6 @@
+ import PropTypes from 'prop-types';
+ import React from 'react';
+-import { FlatList, View, StyleSheet, TouchableOpacity, Text, Platform, } from 'react-native';
++import { FlatList, View, StyleSheet, TouchableOpacity, Text, Platform, Alert, } from 'react-native';
+ import { LoadEarlier } from './LoadEarlier';
+ import Message from './Message';
+ import Color from './Color';
+@@ -156,8 +156,8 @@ export default class MessageContainer extends React.PureComponent {
+             }
+         };
+         this.onEndReached = ({ distanceFromEnd }) => {
+-            const { loadEarlier, onLoadEarlier, infiniteScroll, isLoadingEarlier, } = this.props;
+-            if (infiniteScroll &&
++                    const { loadEarlier, onLoadEarlier, infiniteScroll, isLoadingEarlier, } = this.props;
++                if (infiniteScroll &&
+                 (this.state.hasScrolled || distanceFromEnd > 0) &&
+                 distanceFromEnd <= 100 &&
+                 loadEarlier &&

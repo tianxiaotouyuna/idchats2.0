@@ -1,0 +1,7 @@
+{
+  "name": "IDbitRN",
+  "displayName": "IDbitRN",
+  "androidNavigationBar": {
+    "visible": "sticky-immersive"
+  }
+}

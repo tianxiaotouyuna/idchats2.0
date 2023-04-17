@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>详情_arbitrum one</title>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="14" height="14" rx="7"></rect>
+    </defs>
+    <g id="社区2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="公链" transform="translate(-129.000000, -21.000000)">
+            <g id="详情_arbitrum-one" transform="translate(129.000000, 21.000000)">
+                <rect id="矩形备份" fill-opacity="0.1" fill="#FFFFFF" x="0" y="0" width="20" height="20" rx="10"></rect>
+                <g id="编组-3" transform="translate(3.000000, 3.000000)">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <rect stroke="#9AC7E2" stroke-width="0.77" x="0.385" y="0.385" width="13.23" height="13.23" rx="6.615"></rect>
+                    <g mask="url(#mask-2)">
+                        <g transform="translate(-2.000000, 1.856982)">
+                            <polygon id="矩形" fill="#FFFFFF" transform="translate(8.019018, 6.668245) rotate(31.000000) translate(-8.019018, -6.668245) " points="9.58610658 -0.119819894 9.12051028 13.3598229 6.45193037 13.4563101 6.90177819 1.49308732"></polygon>
+                            <path d="M6.04840686,-0.101106532 L5.72178505,11.5520019 L2.96634071,11.9781057 L3.4378292,2.90235732 C3.48400369,2.01353804 3.96108051,1.20319973 4.71585846,0.731562122 L6.04840686,-0.101106532 L6.04840686,-0.101106532 Z" id="矩形" fill="#FFFFFF" transform="translate(4.507374, 5.938500) rotate(32.000000) translate(-4.507374, -5.938500) "></path>
+                            <path d="M12.6347093,6.0167222 L12.8052005,10.4106016 C12.2109619,10.5612625 11.6945237,10.6393433 11.255886,10.6448438 C10.8172483,10.6503444 10.3686864,10.6106929 9.91020041,10.5258894 L9.7822822,7.22919671 L12.6347093,6.0167222 Z" id="矩形" fill="#00ACF6" transform="translate(11.293741, 8.331034) rotate(-33.000000) translate(-11.293741, -8.331034) "></path>
+                            <path d="M14.907688,2.63648001 L15.0782129,6.13845999 C14.7751145,6.60455804 14.3649914,7.04477052 13.8478437,7.45909742 C13.330696,7.87342433 12.8699318,8.15506776 12.4655511,8.30402772 L12.4373943,3.84798018 L14.907688,2.63648001 Z" id="矩形备份-2" fill="#00ACF6" transform="translate(13.757804, 5.470254) rotate(-33.000000) translate(-13.757804, -5.470254) "></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

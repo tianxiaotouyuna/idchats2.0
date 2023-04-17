@@ -1,0 +1,37 @@
+diff --git a/node_modules/react-native-swiper/src/index.js b/node_modules/react-native-swiper/src/index.js
+index 3e63ca7..ad42d06 100644
+--- a/node_modules/react-native-swiper/src/index.js
++++ b/node_modules/react-native-swiper/src/index.js
+@@ -197,12 +197,6 @@ export default class extends Component {
+   loopJumpTimer = null
+ 
+   UNSAFE_componentWillReceiveProps(nextProps) {
+-    if (!nextProps.autoplay && this.autoplayTimer)
+-      clearTimeout(this.autoplayTimer)
+-    if (nextProps.index === this.props.index) return
+-    this.setState(
+-      this.initState(nextProps, this.props.index !== nextProps.index)
+-    )
+   }
+ 
+   componentDidMount() {
+@@ -265,6 +259,9 @@ export default class extends Component {
+     // Default: horizontal
+     const { width, height } = Dimensions.get('window')
+ 
++     // Default: horizontal
++     let _idx = 0;
++     if (props.loop) _idx = 1;
+     initState.dir = props.horizontal === false ? 'y' : 'x'
+ 
+     if (props.width) {
+@@ -284,7 +281,8 @@ export default class extends Component {
+     }
+ 
+     initState.offset[initState.dir] =
+-      initState.dir === 'y' ? height * props.index : width * props.index
++      initState.dir === 'y' ? height * (props.index + _idx)
++      : width * (props.index + _idx)
+ 
+     this.internals = {
+       ...this.internals,

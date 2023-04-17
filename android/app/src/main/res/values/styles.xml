@@ -1,0 +1,9 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:navigationBarColor">@color/redooo</item>
+        <!-- <item name="android:background">@color/redooo</item> -->
+    </style>
+</resources>
