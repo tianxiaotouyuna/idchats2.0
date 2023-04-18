@@ -35,12 +35,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.idbitrn",
+    package = "com.fancydrawer",
 )
 
 android_resource(
     name = "res",
-    package = "com.idbitrn",
+    package = "com.fancydrawer",
     res = "src/main/res",
 )
 
