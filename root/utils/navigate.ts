@@ -1,10 +1,6 @@
-import useRedux from "@/hooks/useRedux";
-import { getFocusedRouteNameFromRoute, NavigationContainerRef, StackActions, TabActions } from "@react-navigation/native";
+import { NavigationContainerRef, TabActions } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import React from "react";
-import { Alert } from "react-native";
-import { CacheKeys } from "../constants";
-import { Route, Storage }  from "../utils";
 
 export const navigationRef = React.createRef<NavigationContainerRef & StackNavigationProp<any>>();
 
@@ -23,5 +19,5 @@ export const popToTop = () => {
     navigationRef.current?.popToTop();
 }
 export const selectTab = () => {
-    navigationRef.current?.dispatch(TabActions.jumpTo('HomeRoute'))
+    navigationRef.current?.dispatch(TabActions.jumpTo('HomePage'))
 }

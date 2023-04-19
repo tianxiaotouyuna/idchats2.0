@@ -1,7 +1,7 @@
 import { UIELEMENTS } from "@/constants/index";
 import { pxToDp, windowWidth } from "@/utils/system";
 import React, { FunctionComponent, ReactNode } from "react";
-import { Alert, Animated, ColorValue, ImageSourcePropType, Pressable, StyleProp, StyleSheet, Text, TextPropTypes, TextStyle, ViewPropTypes, ViewStyle } from "react-native";
+import { Alert, Animated, ColorValue, ImageSourcePropType, Pressable, StyleProp, StyleSheet, Text, TextStyle,  ViewStyle } from "react-native";
 import { Image, View } from "react-native-animatable";
 import Ripple from "react-native-material-ripple";
 import { TabBarProps } from "react-native-scrollable-tab-view";

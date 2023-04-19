@@ -1,8 +1,5 @@
 import * as ReduxToken from './redux-token';
-import * as CacheKeys from './cache-keys';
 import * as UIELEMENTS from './ui-elements';
-import * as CONSTRACTKEYS from './contract-keys';
-import * as CONSTRACTABIKEYS from './contractAbi-keys';
 
 const isReleaseEnvironment = false; // 是否发布环境
 const HASH_HOST = 'https://api.simplehash.com/api'
@@ -34,7 +31,7 @@ const envParams = isReleaseEnvironment ? ({
 
 })
 
-export { ReduxToken, CacheKeys, UIELEMENTS ,CONSTRACTKEYS,CONSTRACTABIKEYS};
+export { ReduxToken, UIELEMENTS };
 
 export default {
   ...envParams,

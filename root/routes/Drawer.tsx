@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { DrawerContentScrollView, DrawerItem, DrawerItemList, createDrawerNavigator } from '@react-navigation/drawer';
-import FirstPage from '@/pages/GuidePage/FirstPage/FirstPage';
-import HomePageSec from '@/pages/HomePage/HomePageSec';
 import { NavigationContainer } from '@react-navigation/native';
+import HomePage from '@/pages/HomePage/HomePage';
+import UserCenter from '@/pages/UserCenter/UserCenter';
 const DrawerContainer = createDrawerNavigator();
 
 export const Drawer: FunctionComponent = (props) => {
@@ -22,8 +22,7 @@ export const Drawer: FunctionComponent = (props) => {
       <DrawerContainer.Navigator
         drawerContent={(props: any) => <CustomDrawerContent {...props} />}
       >
-        <DrawerContainer.Screen name="HomePageSec" component={HomePageSec}/>
-        <DrawerContainer.Screen name="FirstPage" component={FirstPage}/>
+        <DrawerContainer.Screen name="HomePage" component={HomePage}/>
       </DrawerContainer.Navigator>
     </NavigationContainer>
   )

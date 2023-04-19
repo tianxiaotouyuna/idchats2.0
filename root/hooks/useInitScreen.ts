@@ -10,7 +10,6 @@ import useNavigationOptions from './useNavigationOptions'
 import useStatusBar from './useStatusBar'
 import { UIELEMENTS } from '../constants'
 import { Source } from 'react-native-fast-image'
-import { ImageSource } from 'react-native-vector-icons/Icon'
 import { pxToDp } from '@/utils/system'
 import { System } from '../utils'
 
@@ -18,7 +17,6 @@ type Options = {
     navigationBarColor?: String
     headerTintColor?: String
     headerTitleAlign?:String
-    headerBackImageSource?:ImageSource
     title?:String
 
     statusBar?: StatusBarProps
@@ -30,7 +28,6 @@ const useInitScreen = (options: Options = {}) => {
     const isAn=System.isAndroid;
     const {
         navigationBarColor = "#ffffff",
-        headerBackImageSource,
         backListener,
         title
     } = options;
