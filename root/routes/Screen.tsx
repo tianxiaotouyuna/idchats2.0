@@ -82,6 +82,7 @@ import SetCount from "@/pages/Community/HomePage/GroupChatPage/CommunitySettings
 import ParticipateIdo from "@/pages/Community/HomePage/GroupChatPage/ParticipateIdo/ParticipateIdo";
 import IdoDetail from "@/pages/Community/HomePage/GroupChatPage/ParticipateIdo/IdoDetail/IdoDetail";
 import CountSet from "@/pages/Community/HomePage/GroupChatPage/ParticipateIdo/IdoDetail/CountSet/CountSet";
+import HomePageSec from "@/pages/HomePage/HomePageSec";
 const ScreenStack = createStackNavigator();
 
 const Screen: FunctionComponent = (props) => {
@@ -175,6 +176,7 @@ const Screen: FunctionComponent = (props) => {
                 <ScreenStack.Screen name={Route.SCREEN.ParticipateIdo} component={ParticipateIdo} />
                 <ScreenStack.Screen name={Route.SCREEN.IdoDetail} component={IdoDetail} />
                 <ScreenStack.Screen name={Route.SCREEN.CountSet} component={CountSet} />
+                <ScreenStack.Screen name={Route.SCREEN.HomePageSec} component={HomePageSec} />
             </ScreenStack.Navigator>
         )
     }

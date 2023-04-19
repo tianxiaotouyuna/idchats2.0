@@ -8,7 +8,6 @@ import IMServiceManager from "../utils/IMServiceManager";
 import Axios, { AxiosRequestConfig, Method } from "axios";
 import constants from "../constants";
 import { has } from "lodash";
-import { UserService } from ".";
 import { t } from "i18next";
 import { emailCodeParams, loginEmailParams, RegisterEmailParams } from "./types";
 /**
@@ -18,7 +17,7 @@ export const syncUserDetailInfo = async (imUserInfo:any,ids: Array<string>, wall
   const thirdUserInfo = await getThirdStatusApi(ids);
   const followCount = await getFollowCount(ids[0]);
   const beFollowCount = await getbeFollowCount(ids[0]);
-  const introduce = await UserService.getUserProfile(ids[0])
+  const introduce = await getUserProfile(ids[0])
   let userInfo = Object.assign(imUserInfo, thirdUserInfo?.data[0]);
   userInfo.followCount = followCount;
   userInfo.beFollowCount = beFollowCount;
@@ -34,7 +33,7 @@ export const getUserInfo = async (ids: Array<string>, walletName: string) => {
   const thirdUserInfo = await getThirdStatusApi(ids);
   const followCount = await getFollowCount(ids[0]);
   const beFollowCount = await getbeFollowCount(ids[0]);
-  const introduce = await UserService.getUserProfile(ids[0])
+  const introduce = await getUserProfile(ids[0])
   let userInfo = Object.assign(imUserInfo, thirdUserInfo?.data[0]);
   userInfo.followCount = followCount;
   userInfo.beFollowCount = beFollowCount;
@@ -53,7 +52,7 @@ export const getOtherUserInfo = async (
   const thirdUserInfo = await getThirdStatusApi(ids);
   const followCount = await getFollowCount(ids[0]);
   const beFollowCount = await getbeFollowCount(ids[0]);
-  const introduce = await UserService.getUserProfile(ids[0]);
+  const introduce = await getUserProfile(ids[0]);
   let userInfo = Object.assign(
     imUserInfo[0]?.publicInfo,
     thirdUserInfo?.data[0]

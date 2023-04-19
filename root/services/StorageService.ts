@@ -7,13 +7,8 @@ import constants, { CacheKeys, ReduxToken } from "../constants";
 import { Storage } from "../utils";
 import { CbEvents, OpenIMSDK } from "./open_im_sdk";
 import { WsResponse } from "./open_im_sdk/types";
-import { CommunityService, HomeService, UserService } from "@/services/index";
 import IMServiceManager from "../utils/IMServiceManager";
-import { LANGUNECOD } from "@/constants/cache-keys";
-import i18n from "@/utils/locales";
-import { Network } from "@ethersproject/networks";
-import { t } from "i18next";
-import { Alert } from "react-native";
+import { HomeService, UserService } from ".";
 
 export const load_initState = async (reduxParams: any) => {
   const wallets = await storage.wallets();

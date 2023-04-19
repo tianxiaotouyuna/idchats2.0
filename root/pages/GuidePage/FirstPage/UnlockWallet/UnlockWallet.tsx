@@ -2,19 +2,16 @@ import React, { FunctionComponent, useEffect, useState } from "react";
 import { Alert, TextInput, View } from "react-native";
 import styles from "@/styles/pages/guide/insert_wallet/set_password/styles";
 import { pxToDp, pxToSp, toast } from "@/utils/system";
-import { Image, Text } from "react-native-animatable";
+import {  Text } from "react-native-animatable";
 import NtfButton from "@/components/NtfButton/NtfButton";
 import { ReduxToken, UIELEMENTS } from "@/constants/index";
 import useInitScreen from "@/hooks/useInitScreen";
 import { Navigate, Storage, System } from "@/utils/index";
-import { StorageService } from "@/services/index";
 import Loading from "@/components/LoadingSnipper/Loading";
-import storage from "@/utils/pstorage";
 import { useRoute } from "@react-navigation/native";
-import NFTAlert from "@/components/NFTAlert/NFTAlert";
 import useRedux from "@/hooks/useRedux";
-import { ethers } from "ethers";
 import { t } from "i18next";
+import SplashScreen from "react-native-splash-screen";
 
 const UnlockWallet: FunctionComponent = (props) => {
   const data: any = useRoute().params?.data ?? {};
@@ -22,6 +19,9 @@ const UnlockWallet: FunctionComponent = (props) => {
   const [password2, setpassword2] = useState();
   const [isShow, setisShow] = useState(false);
   const { sendReduxAction } = useRedux();
+  const onPressFunction = () => {
+    props.navigation.openDrawer();
+  };
   useInitScreen({
     navigationOptions: {
       headerTransparent: true,

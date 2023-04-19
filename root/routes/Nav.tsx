@@ -1,42 +1,24 @@
-import React, {  FunctionComponent, useEffect, useState } from 'react';
-import { DarkTheme, NavigationContainer } from '@react-navigation/native';
-import {
-  createStackNavigator,
-} from '@react-navigation/stack';
-import { Navigate } from '../utils';
-import Screen from '@/routes/Screen';
-import { ReduxToken } from '../constants';
-import useRedux from '@/hooks/useRedux';
-import { StorageService } from '../services';
-type navProps = {
-  initName?: string;
-};
-
-export const Nav: FunctionComponent<navProps> = (props) => {
-  const RootStack = createStackNavigator();
-  const reduxParams = useRedux();
-  useEffect(() => {
-    initRunloop()
-  }, [])
-  const initRunloop = async () => {
-    const { initState } = await StorageService.load_initState(reduxParams)
-    const { sendReduxAction } = reduxParams;
-    sendReduxAction(ReduxToken.LOAD_INITSTATE, { initState: initState })
-  }
-  const { initName } =props;
-    return(
-  <NavigationContainer ref={Navigate.navigationRef} theme={DarkTheme} >
-    <RootStack.Navigator >
-      <RootStack.Screen
-        name='Screen'
-        component={Screen}
-        options={{
-          headerShown: false,
-        }}
-        initialParams={{initName:initName}}
-      />
-
-    </RootStack.Navigator>
-  </NavigationContainer>)
+import React, { FunctionComponent, useEffect, useState } from 'react';
+import {  UIELEMENTS } from '../constants';
+import {  createDrawerNavigator } from '@react-navigation/drawer';
+import FirstPage from '@/pages/GuidePage/FirstPage/FirstPage';
+import HomePageSec from '@/pages/HomePage/HomePageSec';
+import {  View } from 'react-native';
+import { CustomDrawerContent } from '@/components/CustomDrawerContent/CustomDrawerContent';
+const Drawer = createDrawerNavigator();
+export const Nav: FunctionComponent = (props) => {
+  
+  return (
+      <View style={{backgroundColor: UIELEMENTS.DEFAULT_BACKGROUND_COLOR, flex: 1}}>
+      <Drawer.Navigator
+      useLegacyImplementation
+        initialRouteName="HomePageSec"
+        drawerContent={(props) => <CustomDrawerContent {...props} />}
+      >
+        <Drawer.Screen name="HomePageSec" component={HomePageSec} />
+        <Drawer.Screen name="FirstPage" component={FirstPage} />
+      </Drawer.Navigator>
+      </View>
+  )
 
 };

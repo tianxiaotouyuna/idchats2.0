@@ -1,5 +1,5 @@
 import IMServiceManager from "@/utils/IMServiceManager";
-import { log, sleep, toast } from "@/utils/system";
+import { log, toast } from "@/utils/system";
 import { Alert } from "react-native";
 import { IMService, UserService } from ".";
 import { CommunityRequest, IDBITRequest } from "../request";
@@ -9,12 +9,8 @@ import { CreateCommunityApiType, CreateCommunityChannelApiType, GetUserJoinedGro
 import { messageTypes, tipsTypes } from "./open_im_sdk/constants/messageContentType";
 import { t } from "i18next";
 import { gd } from "@/utils/pglobal";
-import IdoAbi from "@/constants/config/abi/ido.json"
-import IdoAbi2 from "@/constants/config/abi/ido2.json"
 import { ethers } from "ethers";
-import { pinFileToIPFS, pinJsonToIPFS } from "@/utils/uploadFile";
-import { Navigate } from "../utils";
-import BigNumber from "bignumber.js";
+import {pinJsonToIPFS } from "@/utils/uploadFile";
 /**
  * 获取社区列表
  * @param ensDomain

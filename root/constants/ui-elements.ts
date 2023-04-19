@@ -6,7 +6,7 @@ import { pxToDp } from "@/utils/system";
  export const PADDING_HORIZONTAL = pxToDp(32);
  export const DEFAULT_HEADER_COLOR_ACTIVE = '#3352DB';
  export const DEFAULT_HEADER_COLOR_ACTIVE2 = '#D5F713';
- export const DEFAULT_BACKGROUND_COLOR = '#0F141E';
+ export const DEFAULT_BACKGROUND_COLOR = '#0F1526';
  export const DEFAULT_SEPARATOR_COLOR = '#F0F0F0';
  export const DEFAULT_IMAGEBACKGROUND_COLOR = '#F5F5F5';
  export const DEFAULT_Tab_COLOR = '#272B34';

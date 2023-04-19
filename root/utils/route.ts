@@ -85,4 +85,5 @@ export const SCREEN = {
     ParticipateIdo:"ParticipateIdo",
     IdoDetail:"IdoDetail",
     CountSet:"CountSet",
+    HomePageSec:"HomePageSec",
 }

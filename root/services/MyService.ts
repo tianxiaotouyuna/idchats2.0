@@ -1,7 +1,5 @@
 import { CoinGeckoRrquest, IDBITRequest } from "@/request/index";
 import pstorage from "@/utils/pstorage";
-import { log, sleep } from "@/utils/system";
-import { Alert } from "react-native";
 import { UserService } from ".";
 
 /**

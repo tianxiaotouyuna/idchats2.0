@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingHorizontal: UIELEMENTS.PADDING_HORIZONTAL,
-        backgroundColor: '#0F141E',
+        backgroundColor: UIELEMENTS.DEFAULT_BACKGROUND_COLOR,
         paddingTop: pxToDp(200),
         paddingBottom: pxToDp(434),
         alignItems: "center",

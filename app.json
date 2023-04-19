@@ -1,4 +1,7 @@
 {
-  "name": "Idchats",
-  "displayName": "Idchats"
+  "name": "IDbitRN",
+  "displayName": "IDbitRN",
+  "androidNavigationBar": {
+    "visible": "sticky-immersive"
+  }
 }
