@@ -13,15 +13,18 @@ export const Drawer: FunctionComponent = (props) => {
   function CustomDrawerContent(props) {
     return (
       <DrawerContentScrollView {...props}>
-        <DrawerItemList
+        <DrawerItem label="项目首页" onPress={() => { props.navigation.closeDrawer(); }}
           inactiveBackgroundColor={'transparent'}
           inactiveTintColor={'white'}
-          activeBackgroundColor={'#FFFFFF88'}
+          activeBackgroundColor={UIELEMENTS.DEFAULT_ITEM_BACKGROUND_COLOR}
           activeTintColor={'white'}
-          {...props} />
-        <DrawerItem label="Help" onPress={() => {
-          props.navigation.closeDrawer();
-        }} />
+        />
+        <DrawerItem label="个人中心" onPress={() => { props.navigation.closeDrawer(); }}
+          inactiveBackgroundColor={'transparent'}
+          inactiveTintColor={'white'}
+          activeBackgroundColor={UIELEMENTS.DEFAULT_ITEM_BACKGROUND_COLOR}
+          activeTintColor={'white'}
+        />
       </DrawerContentScrollView>
     );
   }
@@ -32,10 +35,10 @@ export const Drawer: FunctionComponent = (props) => {
           screenOptions={{
             drawerStyle: {
               backgroundColor: 'transparent',
-              drawerType: 'permanent',
-              overlayColor:"transparent",
-              width: 240,
+              width:'70%'
             },
+              drawerType: 'slide',
+              
           }}
           initialRouteName="Home"
           drawerContent={(props: any) => <CustomDrawerContent {...props} />}
