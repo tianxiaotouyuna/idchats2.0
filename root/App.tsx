@@ -4,8 +4,8 @@ import {  LogBox } from "react-native";
 import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { Drawer } from "./routes/Drawer";
-import React, { useState } from "react";
-const App = () => {
+import React from "react";
+  const App = () => {
   LogBox.ignoreAllLogs();
   return (
     <RootSiblingParent>

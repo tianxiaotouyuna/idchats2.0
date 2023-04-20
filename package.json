@@ -22,8 +22,7 @@
     "start-release": "npx react-native start --port=8082",
     "ios-iphone14": "react-native run-ios --simulator 'iPhone 14'",
     "watchman-clean": "watchman watch-del '/Users/apple/Desktop/idchats2.0'",
-    "git-push":"git add . && git commit -m 'git push' &&git push"
-    
+    "git-push": "git add . && git commit -m 'git push' &&git push"
   },
   "dependencies": {
     "@maticnetwork/maticjs-ethers": "^1.0.3",
@@ -106,10 +105,6 @@
     "util": "~0.10.3",
     "vm-browserify": "0.0.4",
     "wagmi": "^0.12.7",
-    "@react-navigation/native-stack": "6.6.1",
-    "@react-navigation/native": "6.0.10",
-    "@react-navigation/stack": "6.2.1",
-    "@react-navigation/drawer": "6.4.1",
     "styled-components": "^5.0.1"
   },
   "devDependencies": {
@@ -120,8 +115,10 @@
     "@react-native-community/eslint-config": "^2.0.0",
     "@react-native-community/viewpager": "3.3.0",
     "@react-navigation/bottom-tabs": "^5.11.3",
-    "@react-navigation/native": "^5.9.0",
-    "@react-navigation/stack": "^5.13.0",
+    "@react-navigation/native-stack": "6.6.1",
+    "@react-navigation/native": "6.0.10",
+    "@react-navigation/stack": "6.2.1",
+    "@react-navigation/drawer": "6.4.1",
     "@tsconfig/react-native": "^2.0.2",
     "@types/jest": "^26.0.23",
     "@types/lodash": "^4.14.182",
