@@ -1,7 +1,6 @@
-import Axios, { AxiosRequestConfig, Method } from "axios";
-import Constants, { CacheKeys } from "@/constants/index";
+import Axios from "axios";
+import Constants from "@/constants/index";
 import jquery from "@/utils/jquery";
-import IMServiceManager from "@/utils/IMServiceManager";
 import { toast } from "@/utils/system";
 import axios from "axios";
 import { Alert, Platform } from "react-native";
@@ -26,9 +25,6 @@ const json = async (
     timeout: DEFAULT_TIMEOUT,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-      'token': IMServiceManager.getInstance().getToken(),
-      'chainId': IMServiceManager.getInstance().getChainId(),
-      // 'chainId':1//137 Matic
     }
   });
 
@@ -40,7 +36,7 @@ const json = async (
     return Promise.resolve(resp?.data);
   } else {
     console.log('ERROR==========================:\n' + JSON.stringify(resp))
-    toast(JSON.stringify(resp), 5000)
+    toast(JSON.stringify(resp), 5000);
     return Promise.reject(resp?.data);
   }
 };
@@ -103,11 +99,3 @@ export const uploadFile=(api: string, fileData: any, progressCallBack: Function,
         callBack && callBack(error)
     });
 }
-
-/**
- * [cancelAxiosRequest 取消axios post请求]
- */
-// function cancelAxiosRequest(){
-//   axiosPostRequestCancel && axiosPostRequestCancel('cancel')
-//   axiosPostRequestCancel = null
-// }

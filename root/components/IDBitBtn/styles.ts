@@ -1,4 +1,5 @@
 import { UIELEMENTS } from "@/constants/index";
+import { DEFAULT_HEADER_COLOR_ACTIVE2 } from "@/constants/ui-elements";
 import { pxToDp, pxToSp } from "@/utils/system";
 import { StyleSheet } from "react-native";
 
@@ -7,15 +8,17 @@ const styles = StyleSheet.create({
         alignItems:"center",
         justifyContent:"center",
         height:pxToDp(88),
-        backgroundColor:'#D5F713'    ,    
+        backgroundColor: DEFAULT_HEADER_COLOR_ACTIVE2,
         borderRadius:pxToDp(12),
         alignSelf:"center",
-        paddingHorizontal:0
+        paddingHorizontal:0,
+        overflow: 'hidden'
     },
     contentStyle: {
         flexDirection:'row',
         alignItems:"center",
         justifyContent:"center",
+        backgroundColor: DEFAULT_HEADER_COLOR_ACTIVE2
     },
     imgStyle: {
         width:pxToDp(36),
@@ -24,7 +27,7 @@ const styles = StyleSheet.create({
     },
     textStyle: {
         fontSize:pxToSp(32),
-        color:'#000',fontWeight:'bold',
+        color:'#F1F4F8',fontWeight:'500',
     },
 })
 

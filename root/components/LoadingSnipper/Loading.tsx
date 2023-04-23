@@ -1,20 +1,12 @@
 import React, { FunctionComponent, useEffect, useRef, useState } from "react";
 import {
-  View,
   StyleProp,
   ViewStyle,
   Text,
-  Modal,
-  Alert,
-  ActivityIndicator,
 } from "react-native";
 import styles from "./styles";
-import { pxToDp } from "@/utils/system";
-import Config from "./Config";
-import Toast from "react-native-root-toast";
 import AnimatedLoader from "react-native-animated-loader";
-import { isLandscape } from "react-native-device-info";
-import { UIELEMENTS } from "@/constants/index";
+import Config from "./Config";
 export enum CardStyle {
   LOGINOUT_STYLE = 1, //退出登录
 }
@@ -61,7 +53,7 @@ const Loading: FunctionComponent<PopProps> = (props) => {
               visible={isShow}
               // overlayColor='rgba(178,178,178,0.8)'
               overlayColor='rgba(20, 26, 37,0.8)'
-              source={require("./loader2.json")}
+              source={require("./loader.json")}
               animationStyle={styles.load_progress}
               speed={1}
             >

@@ -8,17 +8,17 @@ const styles = StyleSheet.create({
         height: pxToDp(32),
     },
     titleBg:{
-        backgroundColor:UIELEMENTS.DEFAULT_ITEM_BACKGROUND_COLOR,
-        height:pxToDp(104),
-        borderRadius:pxToDp(16),
+        backgroundColor:'#1B212D',
         justifyContent:"space-between",
         alignItems:'center',
         flexDirection:'row',
-        paddingHorizontal:pxToDp(32)
+        paddingVertical:pxToDp(4),
+        paddingHorizontal:pxToDp(10),
+        borderRadius:pxToDp(50)
     },
     titleText:{ 
         fontSize: pxToDp(32), 
-        color: '#fff', 
+        color: UIELEMENTS.DEFAULT_DARK_TEXT_COLOR, 
         maxWidth: pxToDp(260), 
     }
     

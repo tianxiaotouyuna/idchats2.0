@@ -1,5 +1,8 @@
 import * as ReduxToken from './redux-token';
 import * as UIELEMENTS from './ui-elements';
+import * as CONSTRACTKEYS from './contract-keys';
+import * as CONSTRACTABIKEYS from './contractAbi-keys';
+import * as CacheKeys from './cache-keys';
 
 const isReleaseEnvironment = false; // 是否发布环境
 const HASH_HOST = 'https://api.simplehash.com/api'
@@ -31,7 +34,7 @@ const envParams = isReleaseEnvironment ? ({
 
 })
 
-export { ReduxToken, UIELEMENTS };
+export { ReduxToken, UIELEMENTS,CONSTRACTABIKEYS,CONSTRACTKEYS,CacheKeys };
 
 export default {
   ...envParams,
@@ -44,24 +47,3 @@ export default {
   REACT_APP_INFURA_APIKEY,
   PINATA_UPLOADURL,
 };
-
-
-
-
-
-
-//  const IPFS_URL = "https://ipfs.io/ipfs/";
-
-// const BASE_HOST='http://192.168.124.25:8082/renren-api/robot'// 测试环境
-// const BASE_HOST='http://localhost:8082/renren-api/robot'// 测试环境
-// 10002 token
-// const BASE_HOST = 'http://192.168.100.99:10004'// 自己接口服务器
-// const IM_HOST = 'ws://192.168.100.99:10003'// WS服务器
-// const BASE_HOST_V2 = 'http://192.168.100.99:10002'// 自己接口服务器
-
-// const BASE_HOST = 'https://www.idchats.com.com'// 自己接口服务器 adimin 10002
-// const IM_HOST = 'wss://idchats.com:10003'// WS服务器
-
-// const BASE_HOST = 'https://test1.idchats.com'// 自己接口服务器
-// const IM_HOST = 'wss://test1.idchats.com/ws'// WS服务器
-// const BASE_HOST_V2 = 'https://test1.idchats.com'// 自己接口服务器

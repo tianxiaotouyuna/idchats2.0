@@ -2,7 +2,6 @@ import React, { FunctionComponent, useEffect, useRef, useState } from "react";
 import { View, StyleProp, ViewStyle, Image, TouchableHighlight, TouchableNativeFeedback, Alert } from "react-native";
 import styles from "./styles";
 import { isAndroid, pxToDp, pxToSp, windowWidth } from "@/utils/system";
-import PressableSlop from "../PressableSlop/PressableSlop";
 import { Text } from "react-native-animatable";
 import ModalDropdown from 'react-native-modal-dropdown';
 import { t } from "i18next";
@@ -12,6 +11,7 @@ import { screenWidth } from "@/utils/Dimensions";
 export enum EYEStyle {
   BLACKSTYLE = 1, //退出登录
   WHITESTYLE = 2, //退出登录
+  CHAINSTYLE = 3, //切换链
 }
 type butonProps = {
   style?: StyleProp<ViewStyle>;
@@ -81,9 +81,8 @@ const GroupDropDown: FunctionComponent<butonProps> = (props) => {
       onSelect={(index: any, value: any) => selectItemIn(value, index)} options={data}
       animated={true}
       showsVerticalScrollIndicator={false}
-      onDropdownWillShow={() => setrigthImg(require('@/resources/idbt/icon_xiala.png'))}
-      onDropdownWillHide={() => setrigthImg(require('@/resources/idbt/icon_shangla.png'))}
-      //  dropdownTextStyle={{backgroundColor:}}
+      onDropdownWillShow={() => setrigthImg(require('@/resources/second/icon_xiala.png'))}
+      onDropdownWillHide={() => setrigthImg(require('@/resources/second/icon_shangla.png'))}
       dropdownStyle={{ paddingTop: pxToDp(4), borderRadius: pxToDp(8), overflow: 'hidden', height: pxToDp((88 + 2) * data.length), marginLeft:-(screenWidth-200)/2,width:screenWidth-2*UIELEMENTS.PADDING_HORIZONTAL,backgroundColor: 'rgba(20, 26, 37, 1)', borderColor: COLORS.clear }}
       renderSeparator={() => <View style={{ marginHorizontal: pxToDp(32), height: pxToDp(1), backgroundColor: 'rgba(255, 255, 255, 0.1)' }}></View>}
       renderRow={renderItem}

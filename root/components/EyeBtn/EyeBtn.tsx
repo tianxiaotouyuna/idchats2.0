@@ -1,6 +1,6 @@
 import React, { FunctionComponent, ReactNode, useState } from "react";
 import FastImage from "react-native-fast-image";
-import { View, StyleProp, ViewStyle, Pressable, Text, Image, Touchable, Alert } from "react-native";
+import { View, StyleProp, ViewStyle, Pressable, Text, Image, Touchable, Alert, TouchableHighlight } from "react-native";
 import styles from "./styles";
 import { UIELEMENTS } from "@/constants/index";
 import Ripple from "react-native-material-ripple";
@@ -15,7 +15,7 @@ export enum EYEStyle {
 type butonProps = {
   style?: StyleProp<ViewStyle>;
   onPress?: (isOpen:boolean) => {};
-  eyeStyle?:EYEStyle
+  eyeStyle?:EYEStyleT
 };
 
 const EyeBtn: FunctionComponent<butonProps> = (props) => {
@@ -27,19 +27,19 @@ const EyeBtn: FunctionComponent<butonProps> = (props) => {
     onPress(isOpen)
   }
   return (
-    <PressableSlop style={[{width:pxToDp(88),height:pxToDp(88),alignItems:"flex-end",justifyContent:"center"},style]} onPress={()=>tapEye()}>
+    <TouchableHighlight underlayColor={'transparent'} style={[{width:pxToDp(88),height:pxToDp(88),alignItems:"flex-end",justifyContent:"center"},style]} onPress={()=>tapEye()}>
     {
       eyeStyle==EYEStyle.BLACKSTYLE?<Image
       style={[styles.image]}
-      source={isOpen?require("@/resources/显示icon.png"):require("@/resources/隐藏icon.png")}
+      source={isOpen?require("@/resources/second/icon_open.png"):require("@/resources/second/icon_open.png")}
       /> :
       <Image
           style={[styles.image]}
-          source={isOpen?require("@/resources/显示icon_white.png"):require("@/resources/隐藏icon_white.png")}
+          source={isOpen?require("@/resources/second/icon_open.png"):require("@/resources/second/icon_open.png")}
           /> 
     }
       
-    </PressableSlop>
+    </TouchableHighlight>
        
   );
 };

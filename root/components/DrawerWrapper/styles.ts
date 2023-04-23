@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     transitionContainer: {
         flex:1,
         alignItems:'center',
-        justifyContent:'center'
+        justifyContent:'center',
     },
     transparentCard: {
         width:'100%',

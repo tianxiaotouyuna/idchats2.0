@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Animated, { Extrapolate, interpolate, useAnimatedStyle } from 'react-native-reanimated';
 import { Text, View } from 'react-native';
 import { UIELEMENTS } from '@/constants/index';
