@@ -14,10 +14,15 @@ const styles = StyleSheet.create({
         height:pxToDp(40),
         marginRight:pxToDp(28)
     },
+    scroll_container: {
+        // paddingTop: pxToDp(40),
+        // , 
+        paddingBottom: pxToDp(30),
+        },
     bottom_bg: {
         borderTopRightRadius:pxToDp(84),
         borderTopLeftRadius:pxToDp(84),
-        backgroundColor:'rgba(31,33,45,0.8)',
+        backgroundColor:'#293350',
         width:'100%',
         flex: 1,
         backdropFilter: 'blur(48px)',

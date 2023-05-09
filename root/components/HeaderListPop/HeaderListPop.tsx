@@ -44,8 +44,11 @@ const HeaderListPop: FunctionComponent<ExGoodsCardProps> = (props) => {
         <View style={[styles.container, style]}>
             <GDataList
                 refreshControlColor={"#fff"}
-                requestMethod={UserService.getNfts}
-                requestParams={{ path: '', params: { address: imUserInfo?.userID ,chainId:chainId} }}
+                requestMethod={UserService.getNfts_gDataList}
+                requestParams={{ path: '', params: { address: 
+                    // imUserInfo?.userID 
+                    '0x7822d01737246a13f7979b9567e8d916f04ea074'
+                    ,chainId:chainId?chainId:1} }}
                 // whereList={WHERELIST.DEFAULT_STYLE_BOUBLE_COLUNM}
                 defaultPageSize={20}
                 renderItem={renderItem}

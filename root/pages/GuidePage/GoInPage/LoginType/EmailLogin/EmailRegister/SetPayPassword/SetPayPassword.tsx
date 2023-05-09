@@ -26,9 +26,6 @@ const SetPayPassword: FunctionComponent = (props) => {
       barStyle: 'light-content',
     },
   });
-  useEffect(() => {
-    SplashScreen.hide()
-  }, [])
   
   return (
       <View style={[styles.container,{paddingBottom:pxToDp(238),paddingTop:pxToDp(238)}]}>

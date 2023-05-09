@@ -82,4 +82,26 @@ export default class IMServiceManager {
     }
 
   }
+  async getSelfUserInfo() {
+    const data = await this._imInstance.getSelfUserInfo();
+    return JSON.parse(data?.data);
+  }
+  async getFollowFriendApplicationList(params: any) {
+    if(!this._imInstance) return
+    try {
+      return await this._imInstance.getFollowFriendApplicationList(params)
+    } catch (error) {
+      log(error,'关注人接口：错误')
+    }
+
+  }
+  async logout() {
+    const data = await this._imInstance.logout();
+    return JSON.parse(data?.data);
+  }
+  async getUsersInfo (data: string[]){
+    const res = await this._imInstance.getUsersInfo(data, new Date().getTime().toString());
+    return JSON.parse(res?.data);
+  }
+  
 }

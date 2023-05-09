@@ -13,10 +13,11 @@ type butonProps = {
   imageSource?: ImageRequireSource;
   text?: string;
   fullWidth?:boolean
+  children?: ReactNode;
 };
 
 const IDBitBtn: FunctionComponent<butonProps> = (props) => {
-  const { imgStyle,  onPress, imageSource, text,textStyle, containerStyle ,contentStyle,fullWidth=true} =
+  const { imgStyle,children,  onPress, imageSource, text,textStyle, containerStyle ,contentStyle,fullWidth=true} =
     props;
   const [borderRadius, setborderRadius] = useState(1000);
   const onLayout=(event)=> {
@@ -35,6 +36,7 @@ const IDBitBtn: FunctionComponent<butonProps> = (props) => {
       rippleContainerBorderRadius={borderRadius}
     >
       <View  onLayout={onLayout} style={[styles.contentStyle,fullWidth?{width:'100%'}:{},contentStyle]}>
+        {children}
         {imageSource ? <Image
           source={imageSource}
           resizeMode={'stretch'}

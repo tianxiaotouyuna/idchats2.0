@@ -23,16 +23,18 @@ import IDBitBtn from "@/components/IDBitBtn/IDBitBtn";
 import { DEFAULT_HEADER_COLOR_ACTIVE2 } from "@/constants/ui-elements";
 
 const EmailRegister: FunctionComponent = (props) => {
-  const [password, setpassword] = useState();
+  const [account, setaccount] = useState('');
+  const [password, setpassword] = useState('');
   const [password2, setpassword2] = useState();
   const [isShow, setisShow] = useState(false);
   const { sendReduxAction } = useRedux();
   const reduxParams = useRedux();
   const [vertity, setvertity] = useState();
+  const [secureTextEntry, setsecureTextEntry] = useState(true);
   useInitScreen({
     navigationOptions: {
       headerTransparent: true,
-      headerTitle: '',
+      headerTitle: t('guidePage.emailRegister'),
       headerTintColor: 'white',
       headerShown: true,
     },
@@ -115,14 +117,22 @@ const EmailRegister: FunctionComponent = (props) => {
 
       <View style={{ marginBottom: pxToDp(136), width: '100%' }}>
         <IDBitTabBg style={{ width: '100%', height: pxToDp(112), alignItems: 'center', justifyContent: 'center', borderRadius: pxToDp(32) }}>
-          <TextInput style={{ height: pxToDp(88), width: '100%', color: '#fff', marginLeft: pxToDp(32), borderRadius: pxToDp(32) }} placeholder="邮箱" placeholderTextColor={'#7082A0'}></TextInput>
+          <TextInput style={{ height: pxToDp(88), width: '100%', color: '#fff', marginLeft: pxToDp(32), borderRadius: pxToDp(32) }} placeholder={t('guidePage.mailbox')} placeholderTextColor={'#7082A0'}
+          value={account}
+          onChangeText={text => setaccount(text)}
+          returnKeyType={'done'}
+          keyboardType={'email-address'}></TextInput>
         </IDBitTabBg>
         <IDBitTabBg style={{ width: '100%', height: pxToDp(112), alignItems: 'center', flexDirection: 'row', justifyContent: 'space-around', marginTop: pxToDp(24), borderRadius: pxToDp(32), marginTop: pxToDp(24) }}>
-          <TextInput style={{ height: pxToDp(88), width: '80%', color: '#fff', borderRadius: pxToDp(32) }} placeholder="密码" placeholderTextColor={'#7082A0'}></TextInput>
-          <EyeBtn style={{ width: pxToDp(48), height: pxToDp(48) }}></EyeBtn>
+          <TextInput style={{ height: pxToDp(88), width: '80%', color: '#fff', borderRadius: pxToDp(32) }} placeholder={t('guidePage.password')} placeholderTextColor={'#7082A0'}
+              value={password}
+              onChangeText={text => setpassword(text)}
+              returnKeyType={'done'}
+              secureTextEntry={secureTextEntry}></TextInput>
+          <EyeBtn style={{ width: pxToDp(48), height: pxToDp(48) }} onPress={() => setsecureTextEntry(secureTextEntry ? false : true)}></EyeBtn>
         </IDBitTabBg>
         <IDBitTabBg style={{ width: '100%', height: pxToDp(112), alignItems: 'center', justifyContent:'space-between', borderRadius: pxToDp(32), marginTop: pxToDp(24),flexDirection:'row', }}>
-          <TextInput style={{ height: pxToDp(88), color: '#fff', marginLeft: pxToDp(32), borderRadius: pxToDp(32)}} placeholder="验证码" placeholderTextColor={'#7082A0'}></TextInput>
+          <TextInput style={{ height: pxToDp(88), color: '#fff', marginLeft: pxToDp(32), borderRadius: pxToDp(32)}} placeholder={t('guidePage.verification')} placeholderTextColor={'#7082A0'}></TextInput>
           <CountDownButton
             style={{
               backgroundColor: DEFAULT_HEADER_COLOR_ACTIVE2,
@@ -137,13 +147,13 @@ const EmailRegister: FunctionComponent = (props) => {
             timerActiveTitle={[t('guidePage.reacquire'), 's']}
             enable={true}
             onClick={async (shouldStartCountting: Function) => {
-              if (checkEmail(password) == false) {
-                toast("t('guidePage.please12')")
+              if (checkEmail(account) == false) {
+                toast(t('guidePage.please12'))
                 return
               }
-              const resp = await UserService.getEmailCode({ emailAddress: password })
+              const resp = await UserService.getEmailCode({ emailAddress: account })
               if (resp?.errCode == 0) toast(t('guidePage.send100'));
-              else toast(JSON.stringify(resp?.errMsg))
+              else toast(JSON.stringify(resp))
               //随机模拟发送验证码成功或失败
               shouldStartCountting(true)
             }}
@@ -154,7 +164,7 @@ const EmailRegister: FunctionComponent = (props) => {
             }} />
         </IDBitTabBg>
       </View>
-      <IDBitBtn text={'注册'} containerStyle={{ borderRadius: pxToDp(32), height: pxToDp(104), marginBottom: pxToDp(136) }} onPress={()=>Navigate.navigate('SetPayPassword')}></IDBitBtn>
+      <IDBitBtn text={t('guidePage.register')} containerStyle={{ borderRadius: pxToDp(32), height: pxToDp(104), marginBottom: pxToDp(136) }} onPress={checkPwd}></IDBitBtn>
 
       <Loading isShow={isShow} onTimeOut={() => setisShow(false)} text={''}></Loading>
     </View>

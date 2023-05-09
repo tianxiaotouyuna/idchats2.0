@@ -1,6 +1,5 @@
 import React, { FunctionComponent, useEffect, useRef, useState } from "react";
 import { Text, TouchableHighlight, View } from "react-native";
-
 import { pxToDp, pxToSp, windowHeight } from "@/utils/system";
 import { Image } from "react-native-animatable";
 import PressableSlop from "@/components/PressableSlop/PressableSlop";
@@ -17,21 +16,36 @@ import FastImage from "react-native-fast-image";
 import IDBitTabBg from "@/components/IDBitTabBg/IDBitTabBg";
 import IDBitBtn from "@/components/IDBitBtn/IDBitBtn";
 import Modal from "react-native-modal";
-import NetworkModal from "@/components/NetworkModal/NetworkModal";
 import { Navigate } from "@/utils/index";
+import IDbitPop, { PopStyle } from "@/components/IDbitPop/IDbitPop";
+import useRedux from "@/hooks/useRedux";
+import Loading from "@/components/LoadingSnipper/Loading";
 
-const HomePage: FunctionComponent = (props) => {
-  const [nftDatas, setnftDatas] = useState([]);
+const HomePage: FunctionComponent = (props:any) => {
+  const [nftDatas, setnftDatas] = useState([{ image_url: '' }, { image_url: '' }]);
   const [activeSlide, setactiveSlide] = useState(0);
   const [showPop, setshowPop] = useState(false);
   const rigthImg1 = (require('@/resources/second/icon_xiala.png'))
-  const rigthImg2 = (require('@/resources/second/icon_shangla.png'))
   const [selectNet, setselectNet] = useState(0);
+  const { selectWallet } = useRedux();
+  const [worknets, setworknets] = useState([]);
   const [isShow, setisShow] = useState(false);
+  const [thisUserInfo, setthisUserInfo] = useState({
+    userID: "",
+    address: "",
+    faceURL: "",
+  });
   const onPressFunction = () => {
     props.navigation.openDrawer();
   };
-
+  const getThisWallet = async () => {
+    const userInfo = await UserService.getOtherUserInfo(
+      [selectWallet.address],
+      selectWallet?.name
+    );
+    setthisUserInfo(userInfo);
+    console.log("walletwalletwallet:\n" + JSON.stringify(selectWallet));
+  };
   useInitScreen({
     navigationOptions: {
       headerTransparent: true,
@@ -49,9 +63,15 @@ const HomePage: FunctionComponent = (props) => {
     setnftDatas(nftDatas);
   }
   useEffect(() => {
-    getNftData()
     SplashScreen.hide()
+    getNftData()
+    getNetworks()
+    getThisWallet()
   }, [])
+  const getNetworks = async () => {
+    const works = await UserService.getNetworks();
+    setworknets(works)
+  }
 
   const pagination = () => {
     return (
@@ -148,9 +168,9 @@ const HomePage: FunctionComponent = (props) => {
           <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
             <View style={{ flexDirection: 'row' }}>
               <FastImage
-                style={{ width: pxToDp(160), height: pxToDp(160), borderRadius: pxToDp(40), backgroundColor: UIELEMENTS.DEFAULT_ITEM_BACKGROUND_COLOR }}
+                style={{ width: pxToDp(160), height: pxToDp(160), borderRadius: pxToDp(40), backgroundColor: UIELEMENTS.DEFAULT_IMAGEBACKGROUND_COLOR }}
                 resizeMode="cover"
-                source={{ uri: 'item?.faceURL ' }}
+                source={{ uri: thisUserInfo?.faceURL }}
               />
               <View style={{ marginLeft: pxToDp(32), justifyContent: 'space-between' }}>
                 <Text style={{ color: '#F1F4F8', fontSize: pxToSp(40), fontWeight: '500' }}>asd</Text>
@@ -174,28 +194,40 @@ const HomePage: FunctionComponent = (props) => {
                 </View>
               </View>
             </View>
-            <Image
-              style={{ width: pxToDp(60), height: pxToDp(48), marginLeft: pxToDp(4), alignSelf: 'flex-start' }}
-              source={require("@/resources/second/icon_bianji.png")}
-              resizeMode={'stretch'}
-            />
+            <View style={{ height: 150, justifyContent: 'space-between' }}>
+              <IDBitBtn text="编辑" containerStyle={{ width: pxToDp(124), height: pxToDp(48), alignSelf: 'flex-start' }} textStyle={{ color: UIELEMENTS.DEFAULT_NORMAL_TEXT_COLOR }} onPress={() => Navigate.navigate('EditInfo')}></IDBitBtn>
+              <IDBitBtn onPress={() => Navigate.navigate('PayType')} text="支付方式" containerStyle={{ width: pxToDp(164), height: pxToDp(48), alignSelf: 'flex-start' }} textStyle={{ color: UIELEMENTS.DEFAULT_NORMAL_TEXT_COLOR }}></IDBitBtn>
+              <IDBitBtn onPress={() => Navigate.navigate('TransferToken')} text="转账Token" containerStyle={{ width: pxToDp(164), height: pxToDp(48), alignSelf: 'flex-start' }} textStyle={{ color: UIELEMENTS.DEFAULT_NORMAL_TEXT_COLOR }}></IDBitBtn>
+              <IDBitBtn onPress={() => Navigate.navigate('Notification')} text="创建推送" containerStyle={{ width: pxToDp(164), height: pxToDp(48), alignSelf: 'flex-start' }} textStyle={{ color: UIELEMENTS.DEFAULT_NORMAL_TEXT_COLOR }}></IDBitBtn>
+              <IDBitBtn onPress={() => Navigate.navigate('EditSpace')} text="编辑空间" containerStyle={{ width: pxToDp(164), height: pxToDp(48), alignSelf: 'flex-start' }} textStyle={{ color: UIELEMENTS.DEFAULT_NORMAL_TEXT_COLOR }}></IDBitBtn>
+            </View>
           </View>
           <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingBottom: pxToDp(0) + useSafeAreaInsets().bottom }}>
             <IDBitBtn
-              onPress={()=>{
+              onPress={() => {
                 Navigate.navigate('Messages')
               }}
               imageSource={require("@/resources/second/icon_xiaoxi.png")}
               containerStyle={{ backgroundColor: '#080D1F', borderRadius: pxToDp(32), width: pxToDp(320), height: pxToDp(104) }}
               textStyle={{ color: '#F1F4F8', fontWeight: '600' }}
-              text="消息"></IDBitBtn>
+              text="消息">
+
+              <LinearGradient
+                colors={['#3E5FC4', '#9A48E2']}
+                start={{ x: 0, y: 1 }}
+                end={{ x: 1, y: 0.25 }}
+                style={{ position: 'absolute', width: '100%', height: '100%' }}
+              >
+              </LinearGradient>
+            </IDBitBtn>
             <IDBitBtn
-              onPress={()=>{
+              onPress={() => {
                 Navigate.navigate('Community')
               }}
-              containerStyle={{ backgroundColor: '#3570FB', borderRadius: pxToDp(32), width: pxToDp(320), height: pxToDp(104) }}
+              containerStyle={{ backgroundColor: '#141F33', borderRadius: pxToDp(32), width: pxToDp(320), height: pxToDp(104) }}
+              contentStyle={{ backgroundColor: '#141F33' }}
               textStyle={{ color: '#F1F4F8', fontWeight: '600' }}
-              text="加入社区"></IDBitBtn>
+              text="空间"></IDBitBtn>
           </View>
         </View>
         <Modal isVisible={showPop} style={[styles.bottomModal]}
@@ -206,16 +238,16 @@ const HomePage: FunctionComponent = (props) => {
           animationIn={'bounceInUp'}
           animationOut={'bounceOutDown'}
         >
-          <NetworkModal onPress={(index: number) => {
+          <IDbitPop data={worknets} popStyle={PopStyle.NETWORK_STYLE} onPress={(index: number) => {
             setisShow(true)
+            setshowPop(false)
             setTimeout(() => {
               setisShow(false)
               setselectNet(index)
-              setshowPop(false)
             }, 1.0);
           }}
             selectIndex={selectNet}
-            onCanclePress={() => setshowPop(false)} style={{ paddingBottom: pxToDp(200) + useSafeAreaInsets().bottom,height:windowHeight- (pxToDp(50) + useSafeAreaInsets().top )}} />
+            onCanclePress={() => setshowPop(false)} style={{ paddingBottom: pxToDp(200) + useSafeAreaInsets().bottom, height: windowHeight - (pxToDp(50) + useSafeAreaInsets().top) }} />
         </Modal>
 
       </LinearGradient>
@@ -226,7 +258,7 @@ const HomePage: FunctionComponent = (props) => {
       {renderNav()}
       {renderCasure()}
       {renderBottom()}
-      {/* <Loading text="" isShow={isShow} onTimeOut={() => setisShow(false)}></Loading> */}
+      <Loading isShow={isShow} onTimeOut={() => setisShow(false)} text={''}></Loading>
     </View>
   );
 };

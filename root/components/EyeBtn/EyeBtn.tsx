@@ -31,11 +31,11 @@ const EyeBtn: FunctionComponent<butonProps> = (props) => {
     {
       eyeStyle==EYEStyle.BLACKSTYLE?<Image
       style={[styles.image]}
-      source={isOpen?require("@/resources/second/icon_open.png"):require("@/resources/second/icon_open.png")}
+      source={isOpen?require("@/resources/second/icon_open.png"):require("@/resources/second/icon_close.png")}
       /> :
       <Image
           style={[styles.image]}
-          source={isOpen?require("@/resources/second/icon_open.png"):require("@/resources/second/icon_open.png")}
+          source={isOpen?require("@/resources/second/icon_open.png"):require("@/resources/second/icon_close.png")}
           /> 
     }
       

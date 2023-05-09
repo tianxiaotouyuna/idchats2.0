@@ -24,7 +24,7 @@ const PressableSlop: FunctionComponent<PressableSlopProps> = (props) => {
         touchType==0?  <Pressable style={props?.style} onLayout={onLayout} onPress={props?.onPress} hitSlop={slopActivi}>
             {props?.children }
         </Pressable>:
-        <TouchableHighlight onPress={props?.onPress}  onLayout={onLayout} hitSlop={slopActivi}>
+        <TouchableHighlight onPress={props?.onPress}  onLayout={onLayout} hitSlop={slopActivi} underlayColor={'transparent'}>
             {props?.children }
         </TouchableHighlight>
     )

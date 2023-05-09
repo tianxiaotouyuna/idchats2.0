@@ -25,12 +25,11 @@ const GoInPage: FunctionComponent = (props) => {
   }, [])
   
   return (
-      <View style={[styles.container,{paddingBottom:pxToDp(238),paddingTop:pxToDp(238)}]}>
+      <View style={[styles.container,{paddingBottom:pxToDp(238),paddingTop:pxToDp(0)}]}>
         <Image style={styles.image}  ></Image>
         <View style={styles.bottomWrap}>
-          <Text style={styles.text1}>{t('guidePage.welcome')}</Text>
           <Text style={styles.text2}>{t('guidePage.web3')}</Text>
-          <NtfButton text={'进入应用'} onPress={() => Navigate.navigate('LoginType')} backgroundColor={UIELEMENTS.DEFAULT_HEADER_COLOR_ACTIVE2} borderRadius={pxToDp(16)} font={pxToSp(36)} width={pxToDp(472)} heigh={pxToDp(104)} style={styles.beginBtn} textColor={'#fff'}></NtfButton>
+          <NtfButton text={t('guidePage.goInApp')} onPress={() => Navigate.navigate('LoginType')} backgroundColor={UIELEMENTS.DEFAULT_HEADER_COLOR_ACTIVE2} borderRadius={pxToDp(16)} font={pxToSp(36)} width={pxToDp(472)} heigh={pxToDp(104)} style={styles.beginBtn} textColor={'#fff'}></NtfButton>
           {/* <NtfButton text={t('guidePage.goon')} onPress={() => Navigate.navigate('SetPassword')} backgroundColor={UIELEMENTS.DEFAULT_HEADER_COLOR_ACTIVE2} borderRadius={pxToDp(16)} font={pxToSp(36)} width={pxToDp(472)} heigh={pxToDp(104)} style={styles.beginBtn} textColor={'#0D0E10'}></NtfButton> */}
         </View>
       </View>

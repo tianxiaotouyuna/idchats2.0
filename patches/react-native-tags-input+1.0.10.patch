@@ -1,0 +1,28 @@
+diff --git a/node_modules/react-native-tags-input/index.js b/node_modules/react-native-tags-input/index.js
+index 67bbc0c..448f7e0 100644
+--- a/node_modules/react-native-tags-input/index.js
++++ b/node_modules/react-native-tags-input/index.js
+@@ -7,8 +7,8 @@ import {
+   StyleSheet,
+   Image,
+   TouchableOpacity,
+-  ViewPropTypes
+ } from 'react-native';
++import {ViewPropTypes,TextInputPropTypes,TextPropTypes} from 'deprecated-react-native-prop-types';
+ 
+ class Tags extends React.Component {
+ 
+@@ -235,11 +235,11 @@ Tags.propTypes = {
+   keysForTagsArray: PropTypes.arrayOf(PropTypes.string),
+   containerStyle: ViewPropTypes.style,
+   inputContainerStyle: ViewPropTypes.style,
+-  inputStyle: TextInput.propTypes.style,
++  inputStyle: TextInputPropTypes.style,
+   disabledInputStyle: ViewPropTypes.style,
+   leftElementContainerStyle: ViewPropTypes.style,
+   rightElementContainerStyle: ViewPropTypes.style,
+-  labelStyle: Text.propTypes.style,
++  labelStyle: TextPropTypes.style,
+   deleteIconStyles: ViewPropTypes.style,
+ };
+ 

@@ -8,6 +8,7 @@ import { t } from "i18next";
 export enum EYEStyle {
   BLACKSTYLE = 0, //退出登录
   CREATE_IDO_STYLE = 1, //退出登录
+  PAY_TYPE_STYLE = 2, //退出登录
 }
 type butonProps = {
   style?: StyleProp<ViewStyle>;

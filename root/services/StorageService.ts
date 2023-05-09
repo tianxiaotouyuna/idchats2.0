@@ -10,6 +10,7 @@ import { t } from "i18next";
 import { CbEvents, OpenIMSDK } from "@/utils/open_im_sdk";
 import * as UserService from "./UserService";
 import { WsResponse } from "@/utils/open_im_sdk/types";
+import { IDBITRequest } from "../request";
 
 export const load_initState = async (reduxParams: any) => {
   const wallets = await storage.wallets();
@@ -113,3 +114,52 @@ export const getAllWallets = async (data: any) => {
   const wallets = await storage.wallets_withChainID(params?.chainId)
   return { list: wallets }
 }
+
+/**
+ * 获取用户信息
+ */
+export const syncUserDetailInfo = async (imUserInfo:any,ids: Array<string>, walletName: string) => {
+  const thirdUserInfo = await getThirdStatusApi(ids);
+  const followCount = await getFollowCount(ids[0]);
+  const beFollowCount = await getbeFollowCount(ids[0]);
+  const introduce = await UserService.getUserProfile(ids[0])
+  let userInfo = Object.assign(imUserInfo, thirdUserInfo?.data[0]);
+  userInfo.followCount = followCount;
+  userInfo.beFollowCount = beFollowCount;
+  userInfo.walletName = walletName;
+  userInfo.introduce = introduce;
+  return userInfo;
+};
+/**
+ * 获取用户绑定的第三方信息信息
+ * @param userIDList
+ */
+const getThirdStatusApi = (userIDList: string[], token?: string) => {
+  return IDBITRequest.post(
+    "/user/get_third_status",
+    { userIDList, operationID: Date.now() + "" },
+    true
+  );
+};
+/**
+ * 获取用户绑定的第三方信息信息
+ * @param userIDList
+ */
+export const getFollowCount = async (userId: string) => {
+  //true我追随的，false追随我的
+  const followInfo =
+    await IMServiceManager.getInstance().getFollowFriendApplicationList({
+      toUserID: userId,
+      selectFans: true,
+    });
+  return JSON.parse(followInfo?.data).length;
+};
+export const getbeFollowCount = async (userId: string) => {
+  //true我追随的，false追随我的
+  const beFollowInfo =
+    await IMServiceManager.getInstance().getFollowFriendApplicationList({
+      toUserID: userId,
+      selectFans: false,
+    });
+  return JSON.parse(beFollowInfo?.data).length;
+};

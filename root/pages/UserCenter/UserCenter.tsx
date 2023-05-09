@@ -21,9 +21,6 @@ const UserCenter: FunctionComponent = (props) => {
       barStyle: 'light-content',
     },
   });
-  useEffect(() => {
-    SplashScreen.hide()
-  }, [])
   return (
       <View style={[styles.container,{paddingTop:pxToDp(50)+useSafeAreaInsets().top}]}>
 

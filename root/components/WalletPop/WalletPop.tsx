@@ -15,7 +15,6 @@ import { pxToDp, pxToSp } from "@/utils/system";
 import { CacheKeys, UIELEMENTS } from "@/constants/index";
 import PressableSlop from "../PressableSlop/PressableSlop";
 import Ripple from "react-native-material-ripple";
-import { Colors } from "react-native/Libraries/NewAppScreen";
 import { COLORS } from "@/utils/Miscellaneous";
 import IDBitSepecter from "../IDBitSepecter/IDBitSepecter";
 import { useSafeAreaInsets } from "react-native-safe-area-context";

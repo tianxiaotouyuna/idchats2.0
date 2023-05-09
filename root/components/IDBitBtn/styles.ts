@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
     containerStyle: {
         alignItems:"center",
         justifyContent:"center",
-        height:pxToDp(88),
+        height:pxToDp(104),
         backgroundColor: DEFAULT_HEADER_COLOR_ACTIVE2,
         borderRadius:pxToDp(12),
         alignSelf:"center",
@@ -18,6 +18,8 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         alignItems:"center",
         justifyContent:"center",
+        width:'100%',
+        height:'100%',
         backgroundColor: DEFAULT_HEADER_COLOR_ACTIVE2
     },
     imgStyle: {

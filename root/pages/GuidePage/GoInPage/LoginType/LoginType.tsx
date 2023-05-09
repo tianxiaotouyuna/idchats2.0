@@ -9,16 +9,16 @@ import useInitScreen from "@/hooks/useInitScreen";
 import { Navigate, System } from "@/utils/index";
 import SplashScreen from 'react-native-splash-screen'
 import { t } from "i18next";
-import LoginTypeCard from "@/components/LoginTypeCard/LoginTypeCard";
+import CellCard from "@/components/CellCard/CellCard";
 const LoginType: FunctionComponent = (props) => {
-    const types=[{ image: require('@/resources/second/icon_email.png'), text: '邮箱登录', chainId: 1 },
-    { image: require('@/resources/second/icon_imtoken.png'), text: 'imToken 登入', chainId: 1 },
-    { image: require('@/resources/second/icon_tokenpocket.png'), text: 'TokenPocket 登入', chainId: 1 }]
-   
+  const types = [{ image: require('@/resources/second/icon_email.png'), text: t('guidePage.emailLogin'), chainId: 1 },
+  { image: require('@/resources/second/icon_imtoken.png'), text: 'imToken', chainId: 1 },
+  { image: require('@/resources/second/icon_tokenpocket.png'), text: 'TokenPocket', chainId: 1 }]
+
   useInitScreen({
     navigationOptions: {
       headerTransparent: true,
-      headerTitle: '登录方式',
+      headerTitle: t('guidePage.loginType'),
       headerTintColor: 'white',
       headerShown: true,
     },
@@ -27,23 +27,19 @@ const LoginType: FunctionComponent = (props) => {
       barStyle: 'light-content',
     },
   });
-  useEffect(() => {
-    SplashScreen.hide()
-  }, [])
-  const onPressCard=(index:number)=>{
-    if(index==0)Navigate.navigate('EmailLogin');
+  const onPressCard = (index: number) => {
+    if (index == 0) Navigate.navigate('EmailLogin');
   }
   return (
-      <View style={[styles.container,{paddingBottom:pxToDp(238),paddingTop:pxToDp(238)}]}>
-        <Image style={{backgroundColor:UIELEMENTS.DEFAULT_ITEM_BACKGROUND_COLOR,height:pxToDp(442),width:'100%'}}></Image>
-      <View style={{width:'100%'}}>
-      {
-          types?.map((item, index) => {
-              return <LoginTypeCard key={index+'asd'} data={item} style={{ marginBottom: pxToDp(24) }} onPress={(index:number)=>onPressCard(index)} index={index}></LoginTypeCard>
-          })
-      }
+    <View style={[styles.container, { paddingBottom: pxToDp(238), paddingTop: pxToDp(238) }]}>
+      <View style={{ width: '100%' }}>
+        <Text style={styles.dark_text1}>{t('guidePage.accountLogin')}</Text>
+        <CellCard data={types[0]} style={{ marginBottom: pxToDp(24) }} onPress={(index: number) => onPressCard(index)} index={0}></CellCard>
+        <Text style={styles.dark_text2}>{t('guidePage.accountLogin')}</Text>
+        <CellCard data={types[1]} style={{ marginBottom: pxToDp(24) }} onPress={(index: number) => onPressCard(index)} index={1}></CellCard>
+        <CellCard data={types[2]} style={{ marginBottom: pxToDp(24) }} onPress={(index: number) => onPressCard(index)} index={2}></CellCard>
       </View>
-      </View>
+    </View>
   );
 };
 export default LoginType;

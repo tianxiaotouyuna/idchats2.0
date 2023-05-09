@@ -90,6 +90,7 @@
     "react-native-svg": "^13.7.0",
     "react-native-swipeout": "https://github.com/tianxiaotouyuna/react-native-swipeout.git",
     "react-native-swiper": "^1.6.0",
+    "react-native-tags-input": "^1.0.10",
     "react-native-webview": "^11.23.0",
     "react-native-wechat": "^1.9.12",
     "react-native-whatsapp-textinput": "^0.1.0",

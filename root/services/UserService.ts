@@ -5,6 +5,8 @@ import IMServiceManager from "@/utils/IMServiceManager";
 import { messageTypes, tipsTypes } from "@/utils/open_im_sdk/constants/messageContentType";
 import { EmailCodeParams, RegisterEmailParams, communityParam } from "@/utils/types";
 import { t } from "i18next";
+import { Alert } from "react-native";
+import { UserService } from ".";
 /**
  * 查询NFT
  */
@@ -40,6 +42,42 @@ export const getNfts = async (data: any) => {
   });
 
   return res?.nfts;
+};
+/**
+ * 查询NFT
+ */
+export const getNfts_gDataList = async (data: any) => {
+  const params = data?.params
+  const { address, chainId } = params;
+  let chains;
+  if (constants.isReleaseEnvironment == true) {
+    if (chainId == 1) {//以太坊
+      chains = 'ethereum'
+    }
+    else if (chainId == 137) {
+      chains = 'polygon'
+    }
+    else if (chainId == 56) {
+      chains = 'bsc'
+    }
+  }
+  else {
+    if (chainId == 1) {//以太坊
+      chains = 'ethereum-goerli'
+    }
+    else if (chainId == 137) {
+      chains = 'polygon-mumbai'
+    }
+    else if (chainId == 56) {
+      chains = 'bsc-testnet'
+    }
+  }
+  const res = await HashRequest.get("/v0/nfts/owners", {
+    chains: chains,
+    wallet_addresses: address,
+    limit: 50,
+  });
+  return {list:res?.nfts};
 };
 /**
  * 获取所有网络
@@ -144,6 +182,78 @@ export const registerEmailCode = async (data: RegisterEmailParams) => {
  * @returns 
  */ 
 export const getEmailCode = async (data: EmailCodeParams) => {
+  Alert.alert(JSON.stringify(data))
   const resp = await CommonRequest.post(constants.BASE_HOST_V3+ '/graph/getEmailCode', JSON.stringify((data)));
   return resp;
 }
+/**
+ * 获取用户简介
+ * @param userProfile 
+ * @returns 
+ */
+export const getUserProfile = async (userId: string) => {
+  const resp = await IDBITRequest.post('/user/get_user_profile', { operationID: new Date().getTime().toString(), userId: userId }, true)
+  return resp?.data?.userProfile;
+}
+/**
+ * 退出登录
+ */
+export const logout = async () => {
+  const resp =await IMServiceManager.getInstance().logout()
+  return resp?.data;
+};
+/**
+ * 获取非当前登陆IM，用户信息
+ */
+export const getOtherUserInfo = async (
+  ids: Array<string>,
+  walletName: string
+) => {
+  const imUserInfo = await IMServiceManager.getInstance().getUsersInfo(ids);
+  const thirdUserInfo = await getThirdStatusApi(ids);
+  const followCount = await getFollowCount(ids[0]);
+  const beFollowCount = await getbeFollowCount(ids[0]);
+  const introduce = await UserService.getUserProfile(ids[0]);
+  let userInfo = Object.assign(
+    imUserInfo[0]?.publicInfo,
+    thirdUserInfo?.data[0]
+  );
+  userInfo.followCount = followCount;
+  userInfo.beFollowCount = beFollowCount;
+  userInfo.walletName = walletName;
+  userInfo.introduce = introduce;
+  return userInfo;
+};
+/**
+ * 获取用户绑定的第三方信息信息
+ * @param userIDList
+ */
+const getThirdStatusApi = (userIDList: string[], token?: string) => {
+  return IDBITRequest.post(
+    "/user/get_third_status",
+    { userIDList, operationID: Date.now() + "" },
+    true
+  );
+};
+/**
+ * 获取用户绑定的第三方信息信息
+ * @param userIDList
+ */
+export const getFollowCount = async (userId: string) => {
+  //true我追随的，false追随我的
+  const followInfo =
+    await IMServiceManager.getInstance().getFollowFriendApplicationList({
+      toUserID: userId,
+      selectFans: true,
+    });
+  return JSON.parse(followInfo?.data).length;
+};
+export const getbeFollowCount = async (userId: string) => {
+  //true我追随的，false追随我的
+  const beFollowInfo =
+    await IMServiceManager.getInstance().getFollowFriendApplicationList({
+      toUserID: userId,
+      selectFans: false,
+    });
+  return JSON.parse(beFollowInfo?.data).length;
+};
