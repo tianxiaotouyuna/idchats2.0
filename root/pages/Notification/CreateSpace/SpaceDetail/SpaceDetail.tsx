@@ -26,25 +26,6 @@ const SpaceDetail: FunctionComponent = (props) => {
             barStyle: 'light-content',
         },
     });
-    const closePress = () => {
-
-    }
-    const renderItem = ({ item, index }: any) => {
-        return <GameCard data={item}/>;
-    };
-
-    const _emptyView = () => {
-        return (
-            <View style={{ alignItems: "center" }}>
-                <Image
-                    style={{ width: pxToDp(238), height: pxToDp(200) }}
-                    source={require("@/resources/idbt/my/noData_my.png")}
-                    resizeMode={'stretch'}
-                />
-                <Text style={{ color: '#ABABAB', fontSize: pxToSp(26), marginTop: pxToDp(10) }}>{t('common.nodata')}</Text>
-            </View>
-        )
-    }
     const createNotification = () => {
 
     }

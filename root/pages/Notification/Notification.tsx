@@ -57,6 +57,9 @@ const Notification: FunctionComponent = (props) => {
         <PressableSlop onPress={() => Navigate.navigate('CreateSpace')}>
           <Text style={{ color: UIELEMENTS.DEFAULT_NORMAL_TEXT_COLOR }}>创建空间</Text>
         </PressableSlop>
+        <PressableSlop onPress={() => Navigate.navigate('CreateSpace')}>
+          <Text style={{ color: UIELEMENTS.DEFAULT_NORMAL_TEXT_COLOR }}>空间详情</Text>
+        </PressableSlop>
       </View>
       <IDBitBtn text={'发布'} containerStyle={{ borderRadius: pxToDp(32), height: pxToDp(104), marginTop: pxToDp(180) }} onPress={createNotification}></IDBitBtn>
     </View>
