@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: UIELEMENTS.DEFAULT_BACKGROUND_COLOR,
+        paddingHorizontal:UIELEMENTS.PADDING_HORIZONTAL,
     },
     navItem: {
         width:pxToDp(40),

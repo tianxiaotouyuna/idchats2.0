@@ -21,7 +21,7 @@ import IDbitPop, { PopStyle } from "@/components/IDbitPop/IDbitPop";
 import useRedux from "@/hooks/useRedux";
 import Loading from "@/components/LoadingSnipper/Loading";
 
-const HomePage: FunctionComponent = (props:any) => {
+const HomePage: FunctionComponent = (props: any) => {
   const [nftDatas, setnftDatas] = useState([{ image_url: '' }, { image_url: '' }]);
   const [activeSlide, setactiveSlide] = useState(0);
   const [showPop, setshowPop] = useState(false);
@@ -183,14 +183,16 @@ const HomePage: FunctionComponent = (props:any) => {
                   />
                 </IDBitTabBg>
                 <View style={{ flexDirection: 'row' }}>
-                  <View style={{ flexDirection: 'row' }}>
+                  <PressableSlop style={{ flexDirection: 'row' }}
+                    onPress={() => Navigate.navigate('Follow')}>
                     <Text style={{ color: '#8796AE', fontSize: pxToSp(24) }}>关注</Text>
                     <Text style={{ color: '#F1F4F8', fontSize: pxToSp(30), fontWeight: '500' }}>326</Text>
-                  </View>
-                  <View style={{ flexDirection: 'row', marginLeft: pxToDp(50) }}>
-                    <Text style={{ color: '#8796AE', fontSize: pxToSp(24) }}>关注</Text>
+                  </PressableSlop>
+                  <PressableSlop style={{ flexDirection: 'row', marginLeft: pxToDp(50) }}
+                    onPress={() => Navigate.navigate('Fans')}>
+                    <Text style={{ color: '#8796AE', fontSize: pxToSp(24) }}>粉丝</Text>
                     <Text style={{ color: '#F1F4F8', fontSize: pxToSp(30), fontWeight: '500' }}>326</Text>
-                  </View>
+                  </PressableSlop>
                 </View>
               </View>
             </View>

@@ -257,3 +257,27 @@ export const getbeFollowCount = async (userId: string) => {
     });
   return JSON.parse(beFollowInfo?.data).length;
 };
+export const getFollowList = async (userId: string) => {
+    const dataList=[{
+      head:'http://gd-hbimg.huaban.com/582f81d810365b88f9073d3ebc11450e3d6ce4d83b24-IfKDKo_fw236',
+      name:'bliu.idc',
+      address:'0xdeoeoo30003033',
+      isFollwed:false
+    },{
+      head:'https://p1.ssl.qhimgs1.com/sdr/400__/t013f29e6429bece717.jpg',
+      name:'skdn.com',
+      address:'0xkfmkddk1111',
+      isFollwed:false
+    },{
+      head:'http://hbimg.huabanimg.com/d723779765da4cb5188a107e0af7b9a5aea2ffc716bbe-PS6Yc2_fw236',
+      name:'mcmm.aa',
+      address:'0x000123003aaa',
+      isFollwed:false
+    },{
+      head:'http://gd-hbimg.huaban.com/582f81d810365b88f9073d3ebc11450e3d6ce4d83b24-IfKDKo_fw236',
+      name:'ppow.id',
+      address:'0x1119203laksi',
+      isFollwed:false
+    },];
+    return {list:dataList}
+}

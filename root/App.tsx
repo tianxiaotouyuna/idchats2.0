@@ -5,7 +5,6 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import React, { useMemo, useState } from "react";
 import { Nav } from "./routes/Nav";
-import { useTranslation } from "react-i18next";
 import { CacheKeys } from "./constants";
 import { Storage } from "./utils";
 import pstorage from "./utils/pstorage";

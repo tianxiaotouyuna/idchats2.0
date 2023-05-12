@@ -2,23 +2,23 @@ import React, { FunctionComponent, useEffect, useRef, useState } from "react";
 import { View } from "react-native";
 
 import { pxToDp } from "@/utils/system";
-import styles from "@/styles/pages/homepage/styles";
+import styles from "@/styles/pages/homepage/fans/fans";
 import useInitScreen from "@/hooks/useInitScreen";
-import IDBITSearch, { SearchStyle } from "@/components/IDBITSearch/IDBITSearch";
 import GDataList from "@/components/GDataList";
 import { UserService } from "@/services/index";
-import CommunityListCard from "@/components/CommunityListCard/CommunityListCard";
 import { Navigate } from "@/utils/index";
 import useRedux from "@/hooks/useRedux";
+import FollowerCard from "@/components/FollowerCard/FollowerCard";
+import { UIELEMENTS } from "@/constants/index";
+import { useHeaderHeight } from "@react-navigation/elements";
 
-const Community: FunctionComponent = (props) => {
-
+const Fans: FunctionComponent = (props) => {
   const reduxParams=useRedux();
   const gRef = useRef<GDataList>(null);
   useInitScreen({
     navigationOptions: {
       headerTransparent: true,
-      headerTitle: '空间列表',
+      headerTitle: '粉丝',
       headerTintColor: 'white',
       headerShown: true,
     },
@@ -29,21 +29,14 @@ const Community: FunctionComponent = (props) => {
   });
   const renderItem = ({ item, index }: any) => {
     return (
-      <CommunityListCard data={item} onPress={()=>Navigate.navigate('GroupChatPage',{chatData:item})}></CommunityListCard>
+      <FollowerCard data={item} onPress={()=>Navigate.navigate('GroupChatPage',{chatData:item})}></FollowerCard>
     );
   };
   return (
-    <View style={[styles.container, { paddingBottom:0}]}>
-      <IDBITSearch
-        style={{
-          height: pxToDp(76),
-        }} 
-        searchStyle={SearchStyle.SEARCH_MY_COMMUNITY_STYLE}
-      />
+    <View style={[styles.container, { paddingTop: UIELEMENTS.PADDING_TOP+useHeaderHeight()}]}>
         <GDataList
           refreshControlColor={"#fff"}
-          style={{marginTop:pxToDp(40)}}
-          requestMethod={UserService.getCommunityList}
+          requestMethod={UserService.getFollowList}
           requestParams={{ path: '', params: { reduxParams: reduxParams} }}
           defaultPageSize={100000}
           renderItem={renderItem}
@@ -55,6 +48,6 @@ const Community: FunctionComponent = (props) => {
     </View>
   );
 };
-export default Community;
+export default Fans;
 
 

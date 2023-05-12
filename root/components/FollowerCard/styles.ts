@@ -5,12 +5,16 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: UIELEMENTS.PADDING_HORIZONTAL,
-    backgroundColor: COLORS.clear,
+    paddingLeft:pxToDp(10),
+    paddingRight: UIELEMENTS.PADDING_HORIZONTAL,
+    backgroundColor: UIELEMENTS.DEFAULT_ITEM_BACKGROUND_COLOR,
+    borderRadius:pxToDp(32),
   },
   container_pinned: {
-    paddingHorizontal: UIELEMENTS.PADDING_HORIZONTAL,
-    backgroundColor: 'rgba(255, 255, 255, .05)'
+    paddingLeft:pxToDp(10),
+    paddingRight: UIELEMENTS.PADDING_HORIZONTAL,
+    backgroundColor: UIELEMENTS.DEFAULT_ITEM_BACKGROUND_COLOR,
+    borderRadius:pxToDp(32),
   },
 
 

@@ -15,6 +15,7 @@ import { IMService, UserService } from '@/services/index';
 import IDBitSepecter from '../IDBitSepecter/IDBitSepecter';
 import IMServiceManager from '@/utils/IMServiceManager';
 import { t } from 'i18next';
+import IDBitBtn from '../IDBitBtn/IDBitBtn';
 export enum CardStyle {
   CHAT_STYLE = 0, //聊天
   NOT_CHAT_STYLE = 1, //个人中心
@@ -111,17 +112,14 @@ const FollowerCard: FunctionComponent<ExGoodsCardProps> = (props) => {
           , style, { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }]}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             <FastImage
-            source={{ uri: data?.faceURL }}
+            source={{ uri: data?.head }}
               // defaultSource={require('@/resources/idbt/moren.png')}
-              style={{ backgroundColor: UIELEMENTS.DEFAULT_ITEM_BACKGROUND_COLOR, width: pxToDp(100), height: pxToDp(100), margin: pxToDp(20), borderRadius: pxToDp(10) }} resizeMode='cover'/>
-            <View style={{ height: pxToDp(100), flex: 1 }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', height: '100%', flex: 1 }}>
-                <Text style={{ width: pxToDp(200), color: '#fff' }} ellipsizeMode={'middle'} numberOfLines={1}>{data?.nickname}</Text>
-                {data?.unreadCount ? <View style={{ backgroundColor: '#D5F713', borderRadius: pxToDp(20), paddingLeft: pxToDp(18), paddingRight: pxToDp(16), paddingVertical: pxToDp(4) }}>
-                  <Text style={{ color: '#0F141E', fontSize: pxToSp(24) }}>{data?.unreadCount}</Text>
-                </View> : null}
-              </View>
+              style={{ backgroundColor: UIELEMENTS.DEFAULT_ITEM_BACKGROUND_COLOR, width: pxToDp(100), height: pxToDp(100), margin: pxToDp(20),marginLeft:0, borderRadius: pxToDp(10) }} resizeMode='cover'/>
+            <View style={{ height: pxToDp(100), flex: 1 ,justifyContent:'space-between'}}>
+                <Text style={{ width: pxToDp(200), color: '#fff' }} ellipsizeMode={'middle'} numberOfLines={1}>{data?.name}</Text>
+                <Text style={{ width: pxToDp(200), color: '#fff' }} ellipsizeMode={'middle'} numberOfLines={1}>{data?.address}</Text>
             </View>
+            <IDBitBtn text='已关注' containerStyle={{width:pxToDp(124),height:pxToDp(60)}}></IDBitBtn>
           </View>
         </View>
         <Loading text="" isShow={isShow} onTimeOut={() => setisShow(false)}></Loading>

@@ -22,9 +22,8 @@ const Settings: FunctionComponent = (props) => {
   { image: require('@/resources/second/icon_gengxin.png'), text: '检查更新', chainId: 1 }]
 
   const data_launge = [{ image: require('@/resources/second/icon_emailguanli.png'), text: '繁體', chainId: 1 },
-  { image: require('@/resources/second/icon_yuyan.png'), text: 'English', chainId: 1 },
-  { image: require('@/resources/second/icon_huobi.png'), text: '日本語', chainId: 1 },
-  { image: require('@/resources/second/icon_gengxin.png'), text: 'Português', chainId: 1 }]
+  { image: require('@/resources/second/icon_huobi.png'), text: '简体', chainId: 1 },
+  { image: require('@/resources/second/icon_yuyan.png'), text: 'English', chainId: 1 }]
   const data_currcy = [{ image: require('@/resources/second/icon_emailguanli.png'), text: '人民币（CNY）', chainId: 1 },
   { image: require('@/resources/second/icon_yuyan.png'), text: '美元（USD）', chainId: 1 }]
   useInitScreen({

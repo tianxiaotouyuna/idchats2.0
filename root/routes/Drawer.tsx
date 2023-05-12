@@ -8,7 +8,6 @@ import { UIELEMENTS } from '../constants';
 import GoInPage from '@/pages/GuidePage/GoInPage/GoInPage';
 import LoginType from '@/pages/GuidePage/GoInPage/LoginType/LoginType';
 import Messages from '@/pages/HomePage/Messages/Messages';
-import Community from '@/pages/HomePage/Community/Community';
 import EmailLogin from '@/pages/GuidePage/GoInPage/LoginType/EmailLogin/EmailLogin';
 import EmailRegister from '@/pages/GuidePage/GoInPage/LoginType/EmailLogin/EmailRegister/EmailRegister';
 import SetPayPassword from '@/pages/GuidePage/GoInPage/LoginType/EmailLogin/EmailRegister/SetPayPassword/SetPayPassword';
@@ -31,6 +30,10 @@ import DraftBox from '@/pages/Notification/DraftBox/DraftBox';
 import EditSpace from '@/pages/Notification/EditSpace/EditSpace';
 import CreateSpace from '@/pages/Notification/CreateSpace/CreateSpace';
 import SpaceDetail from '@/pages/Notification/CreateSpace/SpaceDetail/SpaceDetail';
+import Follow from '@/pages/HomePage/Follow/Follow';
+import Fans from '@/pages/HomePage/Fans/Fans';
+import SpacesSearch from '@/pages/HomePage/Spaces/SpacesSearch/SpacesSearch';
+import SpacesList from '@/pages/HomePage/Spaces/SpacesList/SpacesList';
 type drawerProps = {
   initName?: string;
 };
@@ -101,7 +104,6 @@ export const Drawer: FunctionComponent<drawerProps> = (props) => {
         <DrawerContainer.Screen name="TransferNft" component={withFancyDrawer(TransferNft)} />
         <DrawerContainer.Screen name="GoInPage" component={GoInPage} options={{headerBackgroundContainerStyle:{width:0}}}/>
         <DrawerContainer.Screen name="LoginType" component={LoginType} options={{headerBackgroundContainerStyle:{width:0}}}/>
-        <DrawerContainer.Screen name="Community" component={Community} />
         <DrawerContainer.Screen name="EmailLogin" component={EmailLogin} options={{headerBackgroundContainerStyle:{width:0}}}/>
         <DrawerContainer.Screen name="EmailRegister" component={EmailRegister} />
         <DrawerContainer.Screen name="SetPayPassword" component={SetPayPassword} />
@@ -116,6 +118,10 @@ export const Drawer: FunctionComponent<drawerProps> = (props) => {
         <DrawerContainer.Screen name="EditSpace" component={EditSpace} />
         <DrawerContainer.Screen name="CreateSpace" component={CreateSpace} />
         <DrawerContainer.Screen name="SpaceDetail" component={SpaceDetail} />
+        <DrawerContainer.Screen name="Fans" component={Fans} />
+        <DrawerContainer.Screen name="Follow" component={Follow} />
+        <DrawerContainer.Screen name="SpacesSearch" component={SpacesSearch} />
+        <DrawerContainer.Screen name="SpacesList" component={SpacesList} />
       </DrawerContainer.Navigator>
     </View>
   )
