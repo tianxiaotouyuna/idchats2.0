@@ -79,7 +79,7 @@ export const Drawer: FunctionComponent<drawerProps> = (props) => {
         <IDBitDrawerItem data={{ text: '活动', className: 'Messages' }} imageSource={require("@/resources/second/bianwan_n.png")} />
         <IDBitDrawerItem data={{ text: '空间', className: 'Notification' }} imageSource={require("@/resources/second/kongjian_n.png")} />
         <IDBitDrawerItem data={{ text: '应用', className: 'Applications' }} imageSource={require("@/resources/second/icon_copy.png")} />
-        <IDBitDrawerItem data={{ text: '设置', className: 'Settings' }} imageSource={require("@/resources/second/icon_copy.png")} />
+        <IDBitDrawerItem data={{ text: '设置asd', className: 'Settings' }} imageSource={require("@/resources/second/icon_copy.png")} />
       </DrawerContentScrollView>
     );
   }
